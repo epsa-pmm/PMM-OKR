@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PMM OKR Dashboard · FY26 Q3</title>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f8fafc}</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+// JSX runtime shim (Bun compiled output)
+function jsxDEV_7x81h0kn(type, props, key) {
+  if (key !== undefined && key !== null) {
+    props = props ? Object.assign({}, props, { key: key }) : { key: key };
+  }
+  return React.createElement(type, props);
+}
+const Fragment_8vg9x3sq = React.Fragment;
+const{useState,useMemo}=React;
+const OKR_DATA = [
+  { suite: "AI", product: "AI Platform / Agent Tools (MCP, Pup CLI, Bits Chat, Agent Builder)", objType: "Improving Competitive Performance", tacticTheme: "Customer/competitive research sprint", assetType: "Analyst Briefing", owner: "Nicole Parisi", priority: "P0", crossProduct: true, crossSuites: "Multi-product: Chat · Agent Builder · MCP · Pup CLI", objective: "Deeply understand market/customer/competitive landscape for Bits Chat, Agent Builder, MCP, Pup CLI", tacticsSummary: "Interview customers and sellers to map ICP and reaction to Bits-vs-MCP pricing before Q4 planning.", keyTactics: "8 customer calls + 5 seller interviews to map use cases, ICP, and Bits-vs-MCP pricing reaction", docLink: "https://docs.google.com/document/d/1e2ASh3Yg-vqz-7IwTdc4Xtdwm3O8r5_GEG8fT_ogm5M/edit?tab=t.220racueconz", metrics: { baseline: "0 customer calls logged this quarter", eoq: "8 customer calls + 5 seller interviews completed", confidence: "High" } },
+  { suite: "AI", product: "AI Platform / Agent Tools", objType: "Enabling Sales/Increasing Win Rates", tacticTheme: "Pricing enablement for Agent Interfaces", assetType: "Pricing & Packaging", owner: "Nicole Parisi", priority: "P0", objective: "Equip sales to sell across Agent Interfaces portfolio amid new pricing", tacticsSummary: "Ship pricing FAQ and readiness deck, then run a PFD so sellers can pitch across the new Agent Interfaces pricing.", keyTactics: "Pricing FAQ, Readiness Deck, PFD (Aug 20) on Agent Interfaces pricing; Bits vs. MCP comparison sales play", docLink: "https://docs.google.com/document/d/1e2ASh3Yg-vqz-7IwTdc4Xtdwm3O8r5_GEG8fT_ogm5M/edit?tab=t.220racueconz", metrics: { baseline: "0 MCP/API pricing artifacts; 0 sellers trained on new pricing model", eoq: "≥3 new pricing enablement artifacts; >50% of sellers trained on new pricing model", confidence: "High" } },
+  { suite: "AI", product: "Bits Agent Builder", objType: "Enabling Sales/Increasing Win Rates", tacticTheme: "Foundational sales enablement package", assetType: "Sales Enablement Session", owner: "Nicole Parisi", priority: "P0", objective: "Foundational sales & customer enablement for Agent Builder", tacticsSummary: "Build the first internal + external enablement assets (playbook, demo guide) for Agent Builder.", keyTactics: "2 internal enablement assets + 2 external customer assets (playbook, demo guide, solution guide)", docLink: "https://docs.google.com/document/d/1e2ASh3Yg-vqz-7IwTdc4Xtdwm3O8r5_GEG8fT_ogm5M/edit?tab=t.220racueconz", metrics: { baseline: "0 customer-facing foundational assets for Agent Builder", eoq: "≥3 new customer-facing foundational assets approved and published", confidence: "High" } },
+  { suite: "AI", product: "Bits AI SRE / DevOps Loop (Bits Investigations)", objType: "Driving Pipeline/DG Impact", tacticTheme: "Demand-gen content -> pipeline push", assetType: "Campaign (DG)", owner: "Brianne Bujnowski", priority: "P0", objective: "Activate demand gen at scale, converting content into pipeline ($5M target)", tacticsSummary: "Run webinars + email nurture + case studies to turn Bits Investigations content into $5M of pipeline.", keyTactics: "2 webinars, email nurture, 4 case studies, benchmarking whitepaper + blog series", docLink: "https://docs.google.com/document/d/1e2ASh3Yg-vqz-7IwTdc4Xtdwm3O8r5_GEG8fT_ogm5M/edit?tab=t.x21rhok1qoth", metrics: { baseline: "Q2: $1.15M pipeline; 1,246 MQLs; 189 SQLs", eoq: "$5M pipeline influenced; 2 webinars; 4 case studies published" } },
+  { suite: "AI", product: "Bits AI SRE / DevOps Loop", objType: "Improving Messaging/Positioning", tacticTheme: "'DevOps Loop' messaging rollout", assetType: "Core Messaging", owner: "Brianne Bujnowski", priority: "P0", crossProduct: true, crossSuites: "Multi-product: Bits Chat · Detection · Investigation · Remediation", objective: "Drive unified 'DevOps Loop' story (Chat, Detection, Investigation, Remediation)", tacticsSummary: "Build a first call deck + demo + eBook around the unified DevOps Loop narrative.", keyTactics: "First Call Deck on DevOps Loop narrative; demo script/video; eBook", docLink: "https://docs.google.com/document/d/1e2ASh3Yg-vqz-7IwTdc4Xtdwm3O8r5_GEG8fT_ogm5M/edit?tab=t.x21rhok1qoth", metrics: { baseline: "0 unified DevOps Loop narrative assets", eoq: "First Call Deck + demo script + eBook shipped" } },
+  { suite: "AI", product: "Bits AI SRE / DevOps Loop", objType: "Enabling Sales/Increasing Win Rates", tacticTheme: "Deal-stage / TAM enablement", assetType: "Sales Enablement Session", owner: "Brianne Bujnowski", priority: "P1", objective: "Strengthen bottom-funnel conversion for existing pipeline", tacticsSummary: "Ship a deal-stage setup guide and run a TAM session to help close existing pipeline.", keyTactics: "Setup Guide (deal-stage asset); TAM enablement session", docLink: "https://docs.google.com/document/d/1e2ASh3Yg-vqz-7IwTdc4Xtdwm3O8r5_GEG8fT_ogm5M/edit?tab=t.x21rhok1qoth" },
+  { suite: "AI", product: "Incident Response", objType: "Driving Pipeline/DG Impact", tacticTheme: "Upsell demand-gen campaign", assetType: "Campaign (DG)", owner: "Curtis Maher", priority: "P0", objective: "Grow IR pipeline via coordinated upsell demand-gen + sales conversion", tacticsSummary: "Target ~1,100 accounts with direct mail, email drip, gated assets and webinars to drive IR upsell.", keyTactics: "Tiered target list (~1,100 accounts), direct mail + email drip, 5 gated assets, 3 webinars, On-Call Migration LP", docLink: "https://docs.google.com/document/d/1e2ASh3Yg-vqz-7IwTdc4Xtdwm3O8r5_GEG8fT_ogm5M/edit?tab=t.xlvhacig4lnx", metrics: { baseline: "Q2: 1,674 leads; 231 SQLs; $2.11M pipeline; $3K closed won", eoq: "~1,100 accounts reached; 5 gated assets; 3 webinars launched; On-Call Migration LP live" } },
+  { suite: "AI", product: "Incident Response", objType: "Enabling Sales/Increasing Win Rates", tacticTheme: "Win-loss research -> enablement hub", assetType: "Sales Enablement Session", owner: "Curtis Maher", priority: "P0", objective: "Strengthen sales enablement via win-loss research + deal-stage resources", tacticsSummary: "Interview 10-15 win/loss deals and rebuild the enablement hub with a Win Wire repository.", keyTactics: "Revamp enablement hub, 10-15 win-loss interviews, Win Wire repository, 1-2 new customer stories", docLink: "https://docs.google.com/document/d/1e2ASh3Yg-vqz-7IwTdc4Xtdwm3O8r5_GEG8fT_ogm5M/edit?tab=t.xlvhacig4lnx", metrics: { baseline: "Enablement hub not yet revamped; 0 win-loss interviews this quarter", eoq: "10-15 win/loss interviews completed; enablement hub revamped; Win Wire repository live" } },
+  { suite: "AI", product: "Agent Observability (LLM Obs)", objType: "Improving Messaging/Positioning", tacticTheme: "Outcome-first messaging refresh", assetType: "Core Messaging", owner: "Will Potts", priority: "P0", objective: "Update messaging to be outcome-first, simplify selling across buyer maturity", tacticsSummary: "Launch a new 4-question messaging manifesto, first-call deck and product brief at the July PFD.", keyTactics: "New 4-question messaging manifesto + first-call deck + product brief launched at July PFD", docLink: "https://docs.google.com/document/d/1e2ASh3Yg-vqz-7IwTdc4Xtdwm3O8r5_GEG8fT_ogm5M/edit?tab=t.uhhzw65iqyji", metrics: { baseline: "Existing messaging not outcome-first; no unified manifesto", eoq: "New 4-question manifesto + first-call deck + product brief shipped at July PFD", confidence: "High" } },
+  { suite: "AI", product: "Agent Observability", objType: "Increasing Adoption/Expansion", tacticTheme: "APM cross-sell play + battlecards", assetType: "Cross-sell Sales Play", owner: "Will Potts", priority: "P0", crossProduct: true, crossSuites: "AI ↔ APM/DBM/DO", objective: "Convert the APM install base via multi-quarter sales play", tacticsSummary: "Run an APM+AO cross-sell play through H2 with battlecards vs Langsmith/Langfuse.", keyTactics: "APM+AO cross-sell play, campaign through H2, battlecards vs Langsmith/Langfuse", docLink: "https://docs.google.com/document/d/1e2ASh3Yg-vqz-7IwTdc4Xtdwm3O8r5_GEG8fT_ogm5M/edit?tab=t.uhhzw65iqyji" },
+  { suite: "AI", product: "Agent Observability", objType: "Educating Prospects/Content Impact", tacticTheme: "Content engine (blogs/webinars)", assetType: "Content Series", owner: "Will Potts", priority: "P1", objective: "Keep growing top-of-funnel with repeatable content engine", tacticsSummary: "Keep publishing blogs, webinars and a gated asset to sustain top-of-funnel MQLs.", keyTactics: "8 blogs, 3 webinars (600+ MQLs), 1 gated asset, Q3 sponsored event slate", docLink: "https://docs.google.com/document/d/1e2ASh3Yg-vqz-7IwTdc4Xtdwm3O8r5_GEG8fT_ogm5M/edit?tab=t.uhhzw65iqyji", metrics: { baseline: "Q2: content engine in place but limited pipeline conversion", eoq: "8 blogs published; 3 webinars run; 600+ MQLs generated; 1 gated asset live" } },
+  { suite: "APM/DBM/DO", product: "APM", objType: "Educating Prospects/Content Impact", tacticTheme: "Evergreen content distribution", assetType: "Content Series", owner: "Anthony Lagana", priority: "P0", objective: "Distribute net-new evergreen content for end-to-end APM campaign", tacticsSummary: "Distribute a solutions brief, eBook, webinar and demo video that have already driven $5.1M influenced ARR.", keyTactics: "Core APM solutions brief, RapDev eBook, AI+APM webinar, demo video ($5.1M influenced ARR to date)", docLink: "https://docs.google.com/document/d/1yqmuzURTQLfMLePw9kiy_Q1tpwbI_sIDegqcWhTOAl0/edit?tab=t.9ivbdihdyf95" },
+  { suite: "APM/DBM/DO", product: "APM", objType: "Improving Competitive Performance", tacticTheme: "Battlecard refresh vs Dynatrace", assetType: "Battlecard", owner: "Anthony Lagana", priority: "P0", objective: "Accelerate competitive deals for Core APM via foundational materials", tacticsSummary: "Refresh the Dynatrace battlecard (already at 950 views) and update the messaging manifesto with 3 case studies.", keyTactics: "3 global case studies, Dynatrace battlecard refresh (737->950 views), updated Messaging Manifesto", docLink: "https://docs.google.com/document/d/1yqmuzURTQLfMLePw9kiy_Q1tpwbI_sIDegqcWhTOAl0/edit?tab=t.9ivbdihdyf95" },
+  { suite: "APM/DBM/DO", product: "APM", objType: "Launching a Product/Feature", tacticTheme: "APM Basic pricing launch", assetType: "Pricing & Packaging", owner: "Anthony Lagana", priority: "P0", crossProduct: true, crossSuites: "APM/DBM/DO ↔ AI (Bits/MCP)", objective: "Build APM's AI + flexibility narrative via targeted enablement", tacticsSummary: "Launch APM Basic pricing plus supporting AI/MCP persona research and blog.", keyTactics: "APM Basic pricing launch, Bits/APM Investigations blog, APM+MCP persona research", docLink: "https://docs.google.com/document/d/1yqmuzURTQLfMLePw9kiy_Q1tpwbI_sIDegqcWhTOAl0/edit?tab=t.9ivbdihdyf95" },
+  { suite: "APM/DBM/DO", product: "Database Monitoring (DBM)", objType: "Improving Messaging", tacticTheme: "Scale consistent AI-ready DBM messaging", assetType: "Core Messaging", owner: "Sophie Bymark", priority: "P0", objective: "Scale consistent Database Monitoring messaging by converting core messaging guide into an AI-ready long-form template", tacticsSummary: "Restructure DBM's core messaging guide into the new AI-ready long-form format so downstream AI tools, content, competitive, and sales teams can generate accurate DBM content at scale.", keyTactics: "DBM core messaging guide converted to AI-ready template (personas, competitive positioning, segmented by DBMS), /solutions/ Database use-case overview page shipped", docLink: "https://docs.google.com/document/d/1yqmuzURTQLfMLePw9kiy_Q1tpwbI_sIDegqcWhTOAl0/edit?tab=t.sdce4d30ww76" },
+  { suite: "APM/DBM/DO", product: "Database Monitoring (DBM)", objType: "Increasing Adoption/Expansion", tacticTheme: "Expand DBM reach across the database landscape", assetType: "Cross-sell Sales Play", owner: "Sophie Bymark", priority: "P0", objective: "Expand DBM's reach and adoption across the database landscape — from ClickHouse GA to APM attach to nurture presence", tacticsSummary: "Drive DBM adoption with ClickHouse GA launch, refreshed DBM-attach-to-APM sales play, DBM presence in APM nurture campaign, and APM E2E Navattic demo.", keyTactics: "ClickHouse GA launch (messaging, blog, social, pricing page, enablement FAQs, demo script); DBM-attach-to-APM sales play audit + refresh; DBM email in APM nurture campaign; APM E2E Navattic interactive demo (built + QA'd)", docLink: "https://docs.google.com/document/d/1yqmuzURTQLfMLePw9kiy_Q1tpwbI_sIDegqcWhTOAl0/edit?tab=t.sdce4d30ww76" },
+  { suite: "APM/DBM/DO", product: "Data Observability (DO)", objType: "Launching a Product/Feature", tacticTheme: "Kafka Console + Serverless billing GA", assetType: "Pricing & Packaging", owner: "Tori Engler", priority: "P0", objective: "Launch Kafka Console GA and convert 300+ unbilled Serverless accounts", keyTactics: "Kafka Console GA (core messaging, blog, pricing page, demo script); Jobs Monitoring Serverless pricing change to bill ~300 accounts", docLink: "https://docs.google.com/document/d/1yqmuzURTQLfMLePw9kiy_Q1tpwbI_sIDegqcWhTOAl0/edit?tab=t.shcesuaap84d" },
+  { suite: "APM/DBM/DO", product: "Data Observability (DO)", objType: "Driving Pipeline/Demand Gen", tacticTheme: "Mid-funnel DO proof points for pipeline conversion", assetType: "Customer/competitive research sprint", owner: "Tori Engler", priority: "P0", objective: "Sellers convert mid-funnel DO pipeline with new proof points — Sweetwater case study, updated messaging, global upsell webinar", tacticsSummary: "Give sellers the proof they need to close mid-funnel DO deals: a flagship Sweetwater case study, updated messaging docs, and a global upsell webinar.", keyTactics: "Sweetwater case study published (flagship DO proof point), DO sales messaging docs updated, global DO upsell webinar (NAMER/EMEA/APJ), viBriefing webinar on DO", docLink: "https://docs.google.com/document/d/1yqmuzURTQLfMLePw9kiy_Q1tpwbI_sIDegqcWhTOAl0/edit?tab=t.shcesuaap84d" },
+  { suite: "APM/DBM/DO", product: "Data Observability (DO)", objType: "Improving Competitive Performance", tacticTheme: "Win Databricks + data platform team deals", assetType: "Battlecard", owner: "Tori Engler", priority: "P0", objective: "Sellers win Databricks and data platform team deals with targeted competitive battlecard, enablement, and demo", tacticsSummary: "Build the Databricks competitive displacement motion for DO: battlecard, enablement session, and a data platform demo to help sellers win Databricks-adjacent deals.", keyTactics: "Databricks competitive battlecard for DO, seller enablement session on Databricks displacement, DO data platform demo (built + practiced), outbound sequences for data platform team personas", docLink: "https://docs.google.com/document/d/1yqmuzURTQLfMLePw9kiy_Q1tpwbI_sIDegqcWhTOAl0/edit?tab=t.shcesuaap84d" },
+  { suite: "APM/DBM/DO", product: "Data Observability (DO)", objType: "Educating Prospects/Content Impact", tacticTheme: "DO awareness + thought leadership content engine", assetType: "Content Series", owner: "Tori Engler", priority: "P1", objective: "Grow DO awareness and thought leadership with ebooks, interactive demos, and viBriefing webinars", tacticsSummary: "Publish gated DO content (ebooks, Navattic interactive demo, viBriefing webinar) to attract AI Engineer and data platform personas top-of-funnel.", keyTactics: "DO ebook (gated asset: Optimize Your Data Platform Checklist), Navattic DO interactive demo, viBriefing thought-leadership webinar, AI cost/tokenomics narrative guide", docLink: "https://docs.google.com/document/d/1yqmuzURTQLfMLePw9kiy_Q1tpwbI_sIDegqcWhTOAl0/edit?tab=t.shcesuaap84d" },
+  { suite: "DEM", product: "DEM Suite / Journey Monitoring", objType: "Launching a Product/Feature", tacticTheme: "Journey Monitoring Tier 2 GA launch", assetType: "Launch (Product)", owner: "Bridgitte Kwong", priority: "P0", objective: "Flagship launch of Journey Monitoring as unified DEM Suite entry point", tacticsSummary: "Execute Tier 2 launch BOM for Journey Monitoring as the flagship DEM Suite entry.", keyTactics: "Tier 2 launch assets, messaging manifesto, DEM Suite positioning update", docLink: "https://docs.google.com/document/d/14iYIqizOD1IH4rntGrKdz0uJesz2cOLtqzBHMa0Y7uY/edit?pli=1&tab=t.y4mrpnhchjvi" },
+  { suite: "DEM", product: "DEM Suite / Journey Monitoring", objType: "Increasing Adoption/Expansion", tacticTheme: "Full-suite DEM cross-sell via Journey Monitoring", assetType: "Cross-sell Sales Play", owner: "Bridgitte Kwong", priority: "P0", crossProduct: true, crossSuites: "DEM Suite", objective: "Convert partial-DEM customers into full-suite DEM customers by using Journey Monitoring as the cross-sell driver", tacticsSummary: "Use Journey Monitoring as the wedge to expand DEM adoption across RUM, Synthetics, and Product Analytics within existing accounts.", keyTactics: "Cross-sell sales play for partial-DEM accounts, Journey Monitoring value prop for RUM/Synthetics/PA upsell, seller enablement + DEM expansion motion", docLink: "https://docs.google.com/document/d/14iYIqizOD1IH4rntGrKdz0uJesz2cOLtqzBHMa0Y7uY/edit?pli=1&tab=t.y4mrpnhchjvi" },
+  { suite: "DEM", product: "Synthetics", objType: "Launching a Product/Feature", tacticTheme: "Bits Testing AI-native launch", assetType: "Launch (Product)", owner: "Lauren Zuniga", priority: "P0", crossProduct: true, crossSuites: "DEM ↔ AI (Bits)", objective: "Launch Bits Testing (AI-driven testing) GA by Sept 25", tacticsSummary: "First call deck, product/pricing page, battlecards for Bits Testing GA.", keyTactics: "First call deck, product/pricing page, battlecards, full sales enablement package", docLink: "https://docs.google.com/document/d/14iYIqizOD1IH4rntGrKdz0uJesz2cOLtqzBHMa0Y7uY/edit?pli=1&tab=t.fhj9yfxkb3wx" },
+  { suite: "DEM", product: "Synthetics", objType: "Increasing Adoption/Expansion", tacticTheme: "SMB spend-in + Enterprise expansion plays", assetType: "Cross-sell Sales Play", owner: "Lauren Zuniga", priority: "P0", objective: "Drive Synthetics revenue expansion across the customer base by strengthening SMB spend-in and unlocking Enterprise growth", tacticsSummary: "Build targeted plays to grow SMB accounts past initial footprint and re-engage Enterprise accounts with tailored expansion motions reflecting their maturity and usage patterns.", keyTactics: "SMB expansion play (targeted accounts), Enterprise re-engagement motion, spend curve analysis, tailored account outreach", docLink: "https://docs.google.com/document/d/14iYIqizOD1IH4rntGrKdz0uJesz2cOLtqzBHMa0Y7uY/edit?pli=1&tab=t.fhj9yfxkb3wx" },
+  { suite: "DEM", product: "Synthetics", objType: "Improving Messaging", tacticTheme: "DEM + E2E + developer platform narratives", assetType: "Core Messaging", owner: "Lauren Zuniga", priority: "P0", crossProduct: true, crossSuites: "DEM ↔ APM/DBM/DO ↔ Software Delivery", objective: "Deepen Synthetics customer engagement by strengthening platform narratives across DEM, E2E observability, and modern developer workflows", tacticsSummary: "Develop narratives positioning Synthetics within DEM, APM E2E observability, and modern dev workflows to help sellers engage executive and technical buyers.", keyTactics: "DEM narrative + positioning, Synthetics + APM E2E story, developer/software delivery narrative, platform messaging for seller use", docLink: "https://docs.google.com/document/d/14iYIqizOD1IH4rntGrKdz0uJesz2cOLtqzBHMa0Y7uY/edit?pli=1&tab=t.fhj9yfxkb3wx" },
+  { suite: "DEM", product: "RUM", objType: "Educating Prospects/Content Impact", tacticTheme: "Mobile engineering awareness + instrumentation acceleration", assetType: "Content Series", owner: "Jessica Manheimer", priority: "P0", objective: "Expand RUM adoption by engaging mobile engineering teams and accelerating instrumentation across frontend platforms", tacticsSummary: "Drive mobile eng top-of-funnel via Droidcon, Google Android co-marketing, eBook refresh, newsletter sponsorship, and 6 GA blog posts.", keyTactics: "Droidcon technical session + demo script, Google Android co-marketing plan (1,000 Android devs), Mobile eBook refresh (50+ leads), mobile newsletter sponsorship, 6 GA blogs (C++ SDK, Remote Config, .Net MAUI, visionOS, Shopify, Electron), Flutter Mobile + Mobile Heatmaps GA support", docLink: "https://docs.google.com/document/d/14iYIqizOD1IH4rntGrKdz0uJesz2cOLtqzBHMa0Y7uY/edit?pli=1&tab=t.aei8nqb7obss" },
+  { suite: "DEM", product: "RUM", objType: "Launching a Product/Feature", tacticTheme: "Managed Archive/Profiling GA launch", assetType: "Launch (Product)", owner: "Stella Ma / Jessica Manheimer", priority: "P0", objective: "Launch RUM Managed Archive, Recovery & Export and RUM Profiling GA (Oct 1)", tacticsSummary: "Publish proof content and field enablement for RUM Managed Archive + Profiling GAs.", keyTactics: "Messaging manifesto, product wiki, GSC announcement; Figma case study + dogfooding blog; On-Demand 30; RUM Operations blog + guide; Global Sales Call + SKU enablement", docLink: "https://docs.google.com/document/d/14iYIqizOD1IH4rntGrKdz0uJesz2cOLtqzBHMa0Y7uY/edit?pli=1&tab=t.aei8nqb7obss" },
+  { suite: "DEM", product: "RUM", objType: "Increasing Adoption/Expansion", tacticTheme: "RUM x APM cross-sell + DEM PFD", assetType: "Cross-sell Sales Play", owner: "Stella Ma", priority: "P0", crossProduct: true, crossSuites: "DEM ↔ APM/DBM/DO", objective: "Drive RUM cross-sell into APM and within the DEM suite through sales play motions and enablement", tacticsSummary: "Deliver DEM PFD to 700+ sellers, build RUM x APM messaging + sales play, Navattic product tour, integrate Journey Monitoring messaging across RUM assets.", keyTactics: "DEM Product Field Day (700+ sellers, NAMER/EMEA/APJ), DEM Navattic product tour, RUM x APM messaging manifesto + sales play (150+ AE survey, 10+ seller calls), Journey Monitoring messaging integration across RUM MM/FCD/demo script", docLink: "https://docs.google.com/document/d/14iYIqizOD1IH4rntGrKdz0uJesz2cOLtqzBHMa0Y7uY/edit?pli=1&tab=t.aei8nqb7obss" },
+  { suite: "DEM", product: "Product Analytics", objType: "Improving Competitive Performance", tacticTheme: "Competitive displacement vs. Mixpanel/Amplitude", assetType: "Battlecard", owner: "Adam Virani", priority: "P0", objective: "Fuel PA's competitive displacement by arming sellers with proof points and enablement that convert competitive evaluations into wins", tacticsSummary: "Lift PA win rate against Mixpanel and Amplitude by building sharp displacement enablement and proof points targeting ~$73M in PA Suite pipeline.", keyTactics: "Mixpanel + Amplitude displacement battlecards, competitive win stories + proof points, seller enablement for PA competitive evaluations, competitive deal-stage support", docLink: "https://docs.google.com/document/d/14iYIqizOD1IH4rntGrKdz0uJesz2cOLtqzBHMa0Y7uY/edit?pli=1&tab=t.atscanqiqxo" },
+  { suite: "DEM", product: "Product Analytics", objType: "Educating Prospects/Content Impact", tacticTheme: "Awareness content + Export SKU launch", assetType: "Content Series", owner: "Adam Virani", priority: "P0", objective: "Increase Product Analytics pipeline through market awareness and customer credibility among net-new PM audiences", tacticsSummary: "Build PA visibility with net-new Product Manager audience who doesn't yet know Datadog builds product analytics, including Export SKU GA launch.", keyTactics: "Export SKU GA launch (announcement blog, landing page, one-pager, battlecard), PA awareness content targeting PM persona, customer credibility content, pipeline generation motion", docLink: "https://docs.google.com/document/d/14iYIqizOD1IH4rntGrKdz0uJesz2cOLtqzBHMa0Y7uY/edit?pli=1&tab=t.atscanqiqxo" },
+  { suite: "DEM", product: "Product Analytics", objType: "Driving Pipeline/Demand Gen", tacticTheme: "Accelerate Experiments pipeline + customer credibility", assetType: "Content Series", owner: "Adam Virani", priority: "P0", objective: "Continue Accelerate Experiments pipeline and establish customer credibility post-GA", tacticsSummary: "Build social proof and consistent visibility to convert early Experiments momentum into durable pipeline — publishing customer wins, case studies, and ongoing visibility.", keyTactics: "Customer case studies (2+), published customer win stories, Experiments visibility motion (consistent content + social), competitive proof points post-GA", docLink: "https://docs.google.com/document/d/14iYIqizOD1IH4rntGrKdz0uJesz2cOLtqzBHMa0Y7uY/edit?pli=1&tab=t.atscanqiqxo" },
+  { suite: "Infra", product: "OTel", objType: "Launching a Product/Feature", tacticTheme: "OTel-native APM + K8s Explorer GA BOM", assetType: "Launch (Product)", owner: "David Iparraguirre", priority: "P0", crossProduct: true, crossSuites: "Infra ↔ APM/DBM/DO", objective: "Launch OTel-native APM GA and Kubernetes Explorer (Aug/Sept 30)", tacticsSummary: "Required BOM per launch tier framework for both OTel GA launches.", keyTactics: "OTel-native APM GA BOM, K8s Explorer GA coverage, Grafana competitive positioning refresh", docLink: "https://docs.google.com/document/d/1iZo3h3YMpMkrtCiuJsX422WtQraKw1hb3tyOMHU5znk/edit?tab=t.jmy2bpbha8e3" },
+  { suite: "Infra", product: "OTel", objType: "Improving Competitive Performance", tacticTheme: "Grafana competitive positioning refresh", assetType: "Battlecard", owner: "David Iparraguirre", priority: "P0", objective: "Sharpen competitive positioning vs Grafana with OTel-first narrative", keyTactics: "Grafana battlecard refresh, L1-L7 manifesto update, competitive wins documentation", docLink: "https://docs.google.com/document/d/1iZo3h3YMpMkrtCiuJsX422WtQraKw1hb3tyOMHU5znk/edit?tab=t.jmy2bpbha8e3" },
+  { suite: "Infra", product: "Container Monitoring / K8s", objType: "Improving Messaging/Positioning", tacticTheme: "Persona messaging manifesto + content", assetType: "Core Messaging", owner: "Jacob Simonov", priority: "P0", crossProduct: true, crossSuites: "Infra: K8s + OTel unified narrative", objective: "Update container/K8s messaging manifesto for OTel-native era", keyTactics: "Messaging manifesto update, Bits Infrastructure Operations preview post-DASH, OTel K8s Explorer GA, Infra pricing bundle PFD + GSC enablement", docLink: "https://docs.google.com/document/d/124U8_zTrvjgD7K5UW_lprTk4Hchy1JFtzbO3ib0DeqM/edit?pli=1&tab=t.52ieekutqju3" },
+  { suite: "Infra", product: "Serverless", objType: "Launching a Product/Feature", tacticTheme: "OTel-native APM + K8s Explorer GA BOM", assetType: "Launch (Product)", owner: "Michelle Lee", priority: "P0", objective: "Launch Cloud Run Jobs GA and Azure Functions Tracing GA in Q3", keyTactics: "Launch blog + BOM assets for Cloud Run Jobs GA and Azure Functions Tracing GA", docLink: "https://docs.google.com/document/d/1trXtq3NgiQPLT09NzJ-UseqBqj75xSu_ufMRVD4lSdA/edit?tab=t.7zlsgwnfzly4" },
+  { suite: "Infra", product: "Cloud Cost Management (CCM)", objType: "Increasing Adoption/Expansion", tacticTheme: "SMB + Enterprise expansion motion", assetType: "Campaign (DG)", owner: "Dom Nguyen", priority: "P0", objective: "Expand CCM ARR via targeted demand-gen and standalone CCM Agent promotion", keyTactics: "Standalone CCM Agent promotion (contingent on product readiness), FinOps campaign, partner webinar series", docLink: "https://docs.google.com/document/d/10bWEpTktSvIOcI_OZMw97AdkDh_dVQ3PD3wf_lKWaW0/edit?usp=sharing" },
+  { suite: "Infra", product: "Network Monitoring", objType: "Improving Messaging/Positioning", tacticTheme: "L1-L7 manifesto update", assetType: "Core Messaging", owner: "Paolo Padua", priority: "P0", objective: "Refresh Network Monitoring messaging manifesto for Network Path + EUDM", keyTactics: "Messaging/manifesto refresh (Network Path, EUDM), no new product launch this quarter", docLink: "https://docs.google.com/document/d/15JzMcO5mgjJ8xPlJAXTu7xjJqFW4Do9A_F1LkI7yJxY/edit?tab=t.itipk0727nhw" },
+  { suite: "Infra", product: "Cloud (Azure / GCloud)", objType: "Increasing Adoption/Expansion", tacticTheme: "re:Invent narrative + AWS co-marketing", assetType: "Campaign (DG)", owner: "James Harper / Mohammad Jama / Katarina Knezevic / Cody Murray-Bruce", priority: "P0", objective: "Build cloud partnership momentum and re:Invent narrative for Q4", keyTactics: "AWS co-marketing, GCP/Azure partner campaigns, re:Invent narrative development", docLink: "https://docs.google.com/document/d/1dfU04v9sEJdm8sjU5KACmU-8ZeDjoj3DxOe4zZYqoZQ/edit?usp=sharing" },
+  { suite: "Logs", product: "Log Management (Flex Suite)", objType: "Launching a Product/Feature", tacticTheme: "Unified Logs manifesto + SaaS GA drumbeat", assetType: "Launch (Product)", owner: "Corey Brincks", priority: "P0", objective: "Drive Log Findings GA (biggest SaaS GA of quarter) + 5 lightweight announcements", tacticsSummary: "Log Findings GA is biggest of the quarter; 5 other lightweight GAs run in parallel.", keyTactics: "Log Findings GA, Auto-Processing GA, Reference Tables GA, Logs-config-via-MCP GA, Archive Search reframe, Flex tiered launch", docLink: "https://docs.google.com/document/d/1XADNn9kbLwsvUuVcX0VvqTMJLBszly4RbqMSkKeOw1g/edit?tab=t.0" },
+  { suite: "Logs", product: "Airlift / Splunk Displacement", objType: "Improving Competitive Performance", tacticTheme: "Win Splunk takeouts with Airlift", assetType: "Battlecard", owner: "Andy Lihani", priority: "P0", objective: "Define the 'Splunk-killer' Airlift solution, arm the field to sell it, and prove it with customers and events", tacticsSummary: "Define winning Airlift solution (SPL Migration + AI Parsing + OP Packs), run SF Summit for top ENT accounts, deliver 3 field enablement sessions.", keyTactics: "Airlift Solution defined (SPL Migration + AI Parsing + OP Packs), updated sales deck + 1-pager calling out Splunk, SF Summit (top 10 ENT+ accounts), 3 Q3 enablement sessions (competitive, product-innovation, customer-success/Contentful), customer story (Contentful or Experian), ENT-grade SI content partner for migration playbook", docLink: "https://docs.google.com/document/d/1Me_LreHBETW4LrkiehNjk5OlXRIvXj1yfnRrMb9eWco/edit?tab=t.220racueconz" },
+  { suite: "Logs", product: "BYOC / CloudPrem", objType: "Enabling Sales/Increasing Win Rates", tacticTheme: "SPIFF seller playbook + re-engagement", assetType: "Sales Enablement Session", owner: "Anusha Podila", priority: "P0", objective: "Activate BYOC sales motion with SPIFF, seller playbook and re-engagement of pipeline", keyTactics: "SPIFF seller playbook, pipeline re-engagement, CloudPrem enablement at GA, CSM target account list", docLink: "https://docs.google.com/document/d/1BSavO6r92z50GsHf6Wbdqf7UcwV8tUnM6eTILeCvKag/edit?pli=1&tab=t.64jrvgkrkpq1" },
+  { suite: "Logs", product: "Observability Pipelines (OP)", objType: "Improving Competitive Performance", tacticTheme: "Gartner Telemetry Pipelines MQ narrative + submission", assetType: "Analyst Briefing", owner: "Andy Lihani", priority: "P0", objective: "Define the 2026 OP story and achieve 'Leader' status in Gartner's first-ever Telemetry Pipelines Magic Quadrant", tacticsSummary: "Build unified OP narrative, publish to web, assemble Gartner analyst briefing, complete Cribl competitive analysis, produce demo script + video, and submit MQ packet.", keyTactics: "Unified OP narrative + messaging (differentiating vs. Cribl), OP/Telemetry Pipelines web refresh, Gartner analyst briefing deck, Cribl competitive analysis + battlecard, demo script authored + demo video produced, Gartner Telemetry Pipelines MQ packet submitted", docLink: "https://docs.google.com/document/d/1Me_LreHBETW4LrkiehNjk5OlXRIvXj1yfnRrMb9eWco/edit?tab=t.220racueconz" },
+  { suite: "Security", product: "AI Guard", objType: "Launching a Product/Feature", tacticTheme: "AI Guard GA prep (Oct '26)", assetType: "Launch (Product)", owner: "Alexa Levine", priority: "P0", crossProduct: true, crossSuites: "Security ↔ AI", objective: "Full GA launch readiness for AI Guard (October 2026)", tacticsSummary: "BOM kickoff this quarter: messaging, landing page, DG campaign for Oct GA.", keyTactics: "Messaging, landing page, DG campaign, prior Tier 1 at LA - full BOM for Oct 2026 GA", docLink: "https://docs.google.com/document/d/1bq-oTHee0y1GZTlIB5K7SyixMtDlRIPshYVsUiZ1Thk/edit?tab=t.220racueconz" },
+  { suite: "Security", product: "Cloud Security", objType: "Launching a Product/Feature", tacticTheme: "CADR preview + analyst briefings", assetType: "Analyst Briefing", owner: "Christina DePinto", priority: "P0", objective: "Build CADR narrative + analyst momentum for GA at re:Invent/RSA Q1'27", tacticsSummary: "Narrative bridge to GA being built now with design partners.", keyTactics: "CADR private preview (Tier 1, design partners), analyst briefings, Security Graph GA (Tier 2) drip content", docLink: "https://docs.google.com/document/d/1cUxwSDKbHrFCWmqdYeWUmQo8xs8brvYFbuSlJTlifBs/edit?tab=t.g2yk91gk4r9w" },
+  { suite: "Security", product: "Cloud Security", objType: "Improving Competitive Performance", tacticTheme: "Wiz battlecard + AE certification", assetType: "Battlecard", owner: "Christina DePinto", priority: "P0", objective: "Strengthen competitive positioning vs Wiz with certified AEs", keyTactics: "Wiz battlecard, AE certification program, Black Hat activation support", docLink: "https://docs.google.com/document/d/1cUxwSDKbHrFCWmqdYeWUmQo8xs8brvYFbuSlJTlifBs/edit?tab=t.g2yk91gk4r9w" },
+  { suite: "Security", product: "Code Security", objType: "Improving Competitive Performance", tacticTheme: "Battlecard upkeep (Splunk/Dynatrace/etc)", assetType: "Battlecard", owner: "Daniel Blazquez", priority: "P0", objective: "Maintain competitive edge for Code Security with refreshed battlecards", keyTactics: "Battlecard upkeep for Splunk, Dynatrace and others; proof-point/asset library build", docLink: "" },
+  { suite: "Security", product: "SIEM", objType: "Driving Pipeline/DG Impact", tacticTheme: "Guard Dog demand-gen campaign", assetType: "Campaign (DG)", owner: "Sean Storer", priority: "P0", objective: "Scale Guard Dog SIEM demand-gen campaign to drive qualified pipeline", tacticsSummary: "Run Guard Dog campaign targeting 1,500+ enterprise security accounts.", keyTactics: "Guard Dog Enterprise DG campaign, RSA launch support, Black Hat activation", docLink: "" },
+  { suite: "Software Delivery", product: "Live Debugger", objType: "Launching a Product/Feature", tacticTheme: "Live Debugger GA launch BOM", assetType: "Launch (Product)", owner: "Eric Metaj", priority: "P0", crossProduct: true, crossSuites: "Software Delivery ↔ AI (Bits)", objective: "Full GA launch for Live Debugger AI-native debugging product", tacticsSummary: "Full launch BOM: messaging manifesto, sizzle reel, 2-3 demo videos, target 100+ AEs/SEs enabled.", keyTactics: "Messaging manifesto, sizzle reel, 2-3 demo videos, >50 trials/signups, AE/SE enablement session, first call deck", docLink: "https://docs.google.com/document/d/1yRbH3zi6ThS6D9nwnfylFLznlL98fqr3Pmgfchou9qw/edit?tab=t.87g1rb3fkgqq" },
+  { suite: "Software Delivery", product: "Developer Tooling (FF, Live Debugger, Bits Code)", objType: "Improving Messaging/Positioning", tacticTheme: "Unified rebrand + AI-era positioning", assetType: "Core Messaging", owner: "Eric Metaj", priority: "P0", objective: "Unified dev tooling messaging manifesto + CI/CD Optimization rebrand", tacticsSummary: "Ship persona-aligned manifesto and rebrand CI Visibility/Test Optimization as 'CI/CD Optimization'.", keyTactics: "Persona-aligned manifesto (AI engineer, growth engineer, eng manager); CI/CD Optimization rebrand audit + asset updates", docLink: "https://docs.google.com/document/d/1yRbH3zi6ThS6D9nwnfylFLznlL98fqr3Pmgfchou9qw/edit?tab=t.87g1rb3fkgqq" },
+  { suite: "AI", product: "Incident Response", objType: "Improving Competitive Performance", tacticTheme: "PagerDuty/Opsgenie competitive displacement", assetType: "Battlecard", owner: "Curtis Maher", priority: "P0", objective: "Strengthen sales readiness and competitive positioning against PagerDuty and Opsgenie to accelerate enterprise sales", tacticsSummary: "Build competitive battlecards, win/loss analysis, and seller enablement to displace PagerDuty and Opsgenie in enterprise accounts.", keyTactics: "PagerDuty + Opsgenie competitive battlecards, win/loss analysis, field-ready objection handlers, competitive discovery guide for AEs", docLink: "https://docs.google.com/document/d/1e2ASh3Yg-vqz-7IwTdc4Xtdwm3O8r5_GEG8fT_ogm5M/edit?tab=t.xlvhacig4lnx" },
+  { suite: "Infra", product: "OTel", objType: "Educating Prospects/Content Impact", tacticTheme: "re:Invent OTel narrative + Alliance amplification drumbeat", assetType: "Content Series", owner: "David Iparraguirre", priority: "P0", crossProduct: true, crossSuites: "Infra ↔ APM/DBM/DO", objective: "Build the re:Invent OTel Narrative and Establish an Alliance Amplification Drumbeat with AWS, GCP, and Azure", tacticsSummary: "Develop Datadog's re:Invent OTel narrative and build alliance amplification with AWS/Google/Azure to increase reach and credibility.", keyTactics: "re:Invent OTel narrative + messaging, AWS/GCP/Azure alliance co-content + amplification plan, OTel drumbeat content calendar for H2, alliance-specific OTel materials", docLink: "https://docs.google.com/document/d/1iZo3h3YMpMkrtCiuJsX422WtQraKw1hb3tyOMHU5znk/edit?tab=t.jmy2bpbha8e3" },
+  { suite: "Infra", product: "Container Monitoring / K8s", objType: "Improving Messaging", tacticTheme: "K8s Autoscaling proof + trust-building", assetType: "Core Messaging", owner: "Jacob Simonov", priority: "P0", objective: "Establish trust internally and externally that Datadog Kubernetes Autoscaling drives the strongest and most reliable results", tacticsSummary: "Build external proof points and internal credibility for Datadog K8s Autoscaling including customer wins and benchmark content.", keyTactics: "K8s Autoscaling customer proof points, benchmark content vs. alternatives, internal enablement on Autoscaling differentiation, field-ready objection handlers", docLink: "https://docs.google.com/document/d/124U8_zTrvjgD7K5UW_lprTk4Hchy1JFtzbO3ib0DeqM/edit?pli=1&tab=t.52ieekutqju3" },
+  { suite: "Infra", product: "Container Monitoring / K8s", objType: "Launching a Product/Feature", tacticTheme: "Infra pricing GA launch (vCPU/Basic/Cardinality SKUs)", assetType: "Launch (Product)", owner: "Jacob Simonov", priority: "P0", objective: "Launch Infra pricing (Infra vCPU, Infra Basic, Infinite Cardinality Metrics, Enterprise SKU, Kubernetes) with full GTM coverage", tacticsSummary: "Deliver complete launch BOM for the Infra pricing overhaul across all new SKUs.", keyTactics: "Pricing page updates, launch blog + announcement, first-call deck update, competitive pricing comparisons, RevOps enablement, pricing FAQ for field", docLink: "https://docs.google.com/document/d/124U8_zTrvjgD7K5UW_lprTk4Hchy1JFtzbO3ib0DeqM/edit?pli=1&tab=t.52ieekutqju3" },
+  { suite: "Infra", product: "Serverless", objType: "Improving Messaging", tacticTheme: "Cloud-specific serverless seller toolkit", assetType: "Sales Enablement Session", owner: "Michelle Lee", priority: "P0", objective: "Equip the field with a complete, cloud-specific serverless selling toolkit including messaging, decks, and competitive plays", tacticsSummary: "Build cloud-specific (AWS/GCP/Azure) serverless selling materials — messaging, first-call decks, competitive battlecards — to give sellers what they need to win serverless deals.", keyTactics: "Cloud-specific serverless messaging per cloud provider, first-call deck refresh, competitive battlecards (AWS Lambda/GCP Cloud Run/Azure Functions alternatives), serverless pricing guide", docLink: "https://docs.google.com/document/d/1trXtq3NgiQPLT09NzJ-UseqBqj75xSu_ufMRVD4lSdA/edit?tab=t.7zlsgwnfzly4" },
+  { suite: "Infra", product: "Serverless", objType: "Increasing Adoption/Expansion", tacticTheme: "Serverless seller enablement + Bits Infra Ops rallying", assetType: "Sales Enablement Session", owner: "Michelle Lee", priority: "P0", objective: "Enable sellers with proof and discovery tools, run enablement for key segments, and rally them around Bits Infrastructure Operations", tacticsSummary: "Provide sellers with proof content, discovery toolkits, run targeted enablement sessions, and build momentum for Bits Infrastructure Operations.", keyTactics: "Customer proof points + case studies, serverless discovery script, 2+ targeted enablement sessions, Bits Infrastructure Operations seller rallying kit", docLink: "https://docs.google.com/document/d/1trXtq3NgiQPLT09NzJ-UseqBqj75xSu_ufMRVD4lSdA/edit?tab=t.7zlsgwnfzly4" },
+  { suite: "Infra", product: "CCM", objType: "Improving Competitive Performance", tacticTheme: "FinOps credibility + Gartner/Forrester/IDC analyst relations", assetType: "Analyst Briefing", owner: "Dom Nguyen", priority: "P0", objective: "Build credibility with FinOps personas to drive upmarket penetration via analyst relations and thought leadership", tacticsSummary: "Secure Gartner MQ recognition and build Forrester/IDC briefings to establish Datadog CCM as a credible FinOps platform for enterprise buyers.", keyTactics: "Gartner MQ submission for CCM, Forrester + IDC analyst briefings, FinOps Foundation presence + content, enterprise FinOps persona thought-leadership", docLink: "https://docs.google.com/document/d/10bWEpTktSvIOcI_OZMw97AdkDh_dVQ3PD3wf_lKWaW0/edit?usp=sharing" },
+  { suite: "Infra", product: "CCM", objType: "Increasing Adoption/Expansion", tacticTheme: "Seller-led CCM adoption post-SPIFF", assetType: "Cross-sell Sales Play", owner: "Dom Nguyen", priority: "P0", objective: "Drive continued seller-led CCM adoption by building on SPIFF learnings and re-engaging AI Cost users", tacticsSummary: "Convert SPIFF momentum into durable seller-led adoption, re-engage AI Cost early users, and build playbooks that make CCM easy for AEs to sell independently.", keyTactics: "SPIFF learnings debrief + playbook, AI Cost re-engagement motion, AE self-serve CCM selling guide, CCM expansion motion for existing Infra accounts", docLink: "https://docs.google.com/document/d/10bWEpTktSvIOcI_OZMw97AdkDh_dVQ3PD3wf_lKWaW0/edit?usp=sharing" },
+  { suite: "Infra", product: "CCM", objType: "Launching a Product/Feature", tacticTheme: "New CCM features + pricing promotion", assetType: "Content Series", owner: "Dom Nguyen", priority: "P1", objective: "Promote new CCM features and updated pricing to drive awareness, adoption, and engagement across the customer base", tacticsSummary: "Launch awareness and adoption campaigns for new CCM capabilities and pricing changes including blogs, in-product nudges, and field-facing release notes.", keyTactics: "Feature release blogs (2+), pricing update announcement + FAQ, in-product awareness campaign, release notes + field-facing feature summaries", docLink: "https://docs.google.com/document/d/10bWEpTktSvIOcI_OZMw97AdkDh_dVQ3PD3wf_lKWaW0/edit?usp=sharing" },
+  { suite: "Infra", product: "Network Monitoring", objType: "Improving Competitive Performance", tacticTheme: "Project Eclipse: SolarWinds competitive displacement", assetType: "Battlecard", owner: "Paolo Padua", priority: "P0", objective: "Level up Project Eclipse's competitive motion vs. SolarWinds to accelerate network monitoring displacement wins", tacticsSummary: "Sharpen the SolarWinds displacement playbook with updated battlecards, migration guides, and field enablement to win NM competitive deals.", keyTactics: "Updated SolarWinds battlecard, migration guide (SolarWinds to Datadog NM), competitive win stories, field enablement session for Project Eclipse AEs", docLink: "https://docs.google.com/document/d/15JzMcO5mgjJ8xPlJAXTu7xjJqFW4Do9A_F1LkI7yJxY/edit?tab=t.itipk0727nhw" },
+  { suite: "Infra", product: "Network Monitoring", objType: "Educating Prospects/Content Impact", tacticTheme: "NM asset library + customer proof points", assetType: "Content Series", owner: "Paolo Padua", priority: "P0", objective: "Build on the Network Monitoring asset library with new materials and customer proof points to support the full sales cycle", tacticsSummary: "Expand the NM asset library with customer proof points, use-case-specific content, and field-tested sales materials.", keyTactics: "2+ NM customer case studies, use-case-specific content (NPM/SNMP/wireless), updated NM one-pagers, demo scripts for field use", docLink: "https://docs.google.com/document/d/15JzMcO5mgjJ8xPlJAXTu7xjJqFW4Do9A_F1LkI7yJxY/edit?tab=t.itipk0727nhw" },
+  { suite: "Infra", product: "Cloud (AWS/GCP/Azure)", objType: "Driving Pipeline/Demand Gen", tacticTheme: "Cloud tradeshows + webinar pipeline (AWS/GCP/Azure)", assetType: "Campaign (DG)", owner: "James Harper / Mohammad Jama / Katarina Knezevic / Cody Murray-Bruce", priority: "P0", objective: "Drive pipeline via AWS, Google Cloud, and Azure tradeshows, cloud summits, and co-branded webinars in Q3", tacticsSummary: "Activate Datadog's presence at AWS, GCP, and Azure tradeshows and summits and run co-branded webinars to drive pipeline with cloud-first buyers.", keyTactics: "AWS Summit presence + activation, Google Cloud co-marketing, Azure co-branded webinars (2+), cloud tradeshow pipeline tracking", docLink: "https://docs.google.com/document/d/1dfU04v9sEJdm8sjU5KACmU-8ZeDjoj3DxOe4zZYqoZQ/edit?usp=sharing" },
+  { suite: "Infra", product: "Cloud (AWS/GCP/Azure)", objType: "Increasing Adoption/Expansion", tacticTheme: "Cloud co-sell assets + seller enablement", assetType: "Sales Enablement Session", owner: "James Harper / Mohammad Jama / Katarina Knezevic / Cody Murray-Bruce", priority: "P0", objective: "Deliver new co-sell assets and enable Cloud and Datadog sellers to drive co-sell opportunities with AWS, GCP, and Azure", tacticsSummary: "Build cloud-specific co-sell kits, joint seller enablement, and co-sell opportunity playbooks for AWS, GCP, and Azure partnerships.", keyTactics: "Cloud co-sell kit per provider (AWS/GCP/Azure), joint seller enablement sessions (2+ per cloud), co-sell opportunity discovery guide, cloud marketplace optimization", docLink: "https://docs.google.com/document/d/1dfU04v9sEJdm8sjU5KACmU-8ZeDjoj3DxOe4zZYqoZQ/edit?usp=sharing" },
+  { suite: "Infra", product: "Cloud (AWS/GCP/Azure)", objType: "Launching a Product/Feature", tacticTheme: "Q3 cloud integration launches GTM coverage", assetType: "Launch (Product)", owner: "James Harper / Mohammad Jama / Katarina Knezevic / Cody Murray-Bruce", priority: "P0", objective: "Achieve 100% GTM content coverage for priority Q3 cloud integration launches to maximize awareness and adoption", tacticsSummary: "Ensure every priority Q3 cloud integration GA has launch blog, updated docs, and field-facing enablement before GA date.", keyTactics: "Launch blogs for all priority Q3 cloud integration GAs, updated cloud integration docs, field-facing release summaries, cloud partner co-announcement coordination", docLink: "https://docs.google.com/document/d/1dfU04v9sEJdm8sjU5KACmU-8ZeDjoj3DxOe4zZYqoZQ/edit?usp=sharing" },
+  { suite: "Infra", product: "Cloud (AWS/GCP/Azure)", objType: "Improving Competitive Performance", tacticTheme: "Cloud-native + commercial competitor displacement", assetType: "Battlecard", owner: "James Harper / Mohammad Jama / Katarina Knezevic / Cody Murray-Bruce", priority: "P0", objective: "Improve competitive performance of Datadog vs. cloud-native and commercial competitors in cloud monitoring deals", tacticsSummary: "Build and refresh competitive battlecards and displacement playbooks for cloud-native competitors and commercial alternatives.", keyTactics: "AWS CloudWatch + GCP Ops + Azure Monitor competitive battlecards, commercial competitor displacement playbook, competitive win/loss analysis, field objection handlers", docLink: "https://docs.google.com/document/d/1dfU04v9sEJdm8sjU5KACmU-8ZeDjoj3DxOe4zZYqoZQ/edit?usp=sharing" },
+  { suite: "Infra", product: "Cloud (AWS/GCP/Azure)", objType: "Driving Pipeline/Demand Gen", tacticTheme: "Cross-functional cloud playbooks (partner + field marketing)", assetType: "Campaign (DG)", owner: "James Harper / Mohammad Jama / Katarina Knezevic / Cody Murray-Bruce", priority: "P1", objective: "Pilot repeatable cross-functional playbooks with partner and field marketing to scale cloud GTM motions", tacticsSummary: "Design and pilot 1-2 repeatable cloud GTM playbooks that partner marketing, field marketing, and PMM can run together quarterly.", keyTactics: "Cloud GTM playbook template (1-2 pilots), cross-functional cloud activation calendar, partner + field marketing alignment sessions, playbook retrospective framework", docLink: "https://docs.google.com/document/d/1dfU04v9sEJdm8sjU5KACmU-8ZeDjoj3DxOe4zZYqoZQ/edit?usp=sharing" },
+  { suite: "Logs", product: "BYOC / CloudPrem", objType: "Improving Competitive Performance", tacticTheme: "BYOC competitive intelligence build-out", assetType: "Battlecard", owner: "Anusha Podila", priority: "P0", objective: "Build BYOC competitive intelligence to win against alternatives and equip sellers with sharp differentiation", tacticsSummary: "Map the BYOC competitive landscape, build battlecards against key alternatives, and deliver competitive intelligence to sellers for regulated-market deals.", keyTactics: "BYOC competitive landscape mapping, competitive battlecards (primary alternatives), competitive FAQ for sellers, win/loss research for BYOC deals", docLink: "https://docs.google.com/document/d/1BSavO6r92z50GsHf6Wbdqf7UcwV8tUnM6eTILeCvKag/edit?pli=1&tab=t.64jrvgkrkpq1" },
+  { suite: "Logs", product: "BYOC / CloudPrem", objType: "Improving Messaging", tacticTheme: "Field enablement for BYOC Log pre-GA", assetType: "Sales Enablement Session", owner: "Anusha Podila", priority: "P0", objective: "Enable the field to identify, qualify, and pitch BYOC Log ahead of GA through targeted sales materials and training", tacticsSummary: "Build pre-GA field enablement so AEs and SEs can correctly identify and pitch BYOC Log opportunities in regulated industries before GA.", keyTactics: "BYOC Log qualification guide, first-call deck for BYOC Log, AE + SE discovery guide, 1-2 field enablement sessions before GA", docLink: "https://docs.google.com/document/d/1BSavO6r92z50GsHf6Wbdqf7UcwV8tUnM6eTILeCvKag/edit?pli=1&tab=t.64jrvgkrkpq1" },
+  { suite: "Logs", product: "BYOC / CloudPrem", objType: "Driving Pipeline/Demand Gen", tacticTheme: "EU regulated markets pipeline + SF Summit presence", assetType: "Campaign (DG)", owner: "Anusha Podila", priority: "P0", objective: "Build pre-GA pipeline in regulated EU markets and establish BYOC presence at SF Summit to generate enterprise interest", tacticsSummary: "Target regulated EU markets (FSI/healthcare/public sector) with pipeline-building activities and use SF Summit as a BYOC anchor moment.", keyTactics: "EU regulated market outreach (FSI/healthcare/public sector target accounts), SF Summit BYOC activation + demo, BYOC landing page for EU, pre-GA pipeline tracking", docLink: "https://docs.google.com/document/d/1BSavO6r92z50GsHf6Wbdqf7UcwV8tUnM6eTILeCvKag/edit?pli=1&tab=t.64jrvgkrkpq1" },
+  { suite: "Security", product: "AI Guard", objType: "Improving Messaging", tacticTheme: "AI Guard foundation build + onboarding checkpoints", assetType: "Core Messaging", owner: "Alexa Levine", priority: "P0", objective: "Complete the AI Guard go-to-market foundation by building core messaging, positioning, and sales onboarding materials", tacticsSummary: "Build the foundational GTM assets for AI Guard — messaging house, positioning doc, onboarding checkpoints for new sellers — so the team can scale the AI Guard sales motion.", keyTactics: "AI Guard messaging house, positioning doc (vs. alternatives), seller onboarding checklist, demo script v1, internal product FAQ", docLink: "https://docs.google.com/document/d/1bq-oTHee0y1GZTlIB5K7SyixMtDlRIPshYVsUiZ1Thk/edit?tab=t.220racueconz" },
+  { suite: "Security", product: "AI Guard", objType: "Educating Prospects/Content Impact", tacticTheme: "Black Hat activations: demos, enablement + messaging", assetType: "Sales Enablement Session", owner: "Alexa Levine", priority: "P0", objective: "Support Black Hat activations through demos, enablement, and messaging to drive AI Guard awareness with security buyers", tacticsSummary: "Use Black Hat as the marquee security moment to activate AI Guard — demos, field-ready messaging, event-specific enablement for SEs and AEs attending.", keyTactics: "Black Hat demo script + demo environment, AI Guard event-specific one-pager, SE/AE event enablement session, Black Hat content and social activation, security persona messaging for events", docLink: "https://docs.google.com/document/d/1bq-oTHee0y1GZTlIB5K7SyixMtDlRIPshYVsUiZ1Thk/edit?tab=t.220racueconz" }
+];
+const LAUNCHES_DATA = [
+  { suite: "Infra", product: "OTel", launch: "OTel-native APM GA", tier: "Not stated (DASH Preview -> GA)", date: "Aug 30 or Sept 30 (TBD)", owner: "David Iparraguirre", notes: "Required BOM per launch tier framework", isLaunch: true, docLink: "https://docs.google.com/document/d/1iZo3h3YMpMkrtCiuJsX422WtQraKw1hb3tyOMHU5znk/edit?tab=t.jmy2bpbha8e3" },
+  { suite: "Logs", product: "Log Management", launch: "Log Findings GA", tier: "Priority launch", date: "Q3", owner: "Corey Brincks", notes: "Biggest of the quarter's SaaS GAs", isLaunch: true, docLink: "https://docs.google.com/document/d/1XADNn9kbLwsvUuVcX0VvqTMJLBszly4RbqMSkKeOw1g/edit?tab=t.0" },
+  { suite: "Software Delivery", product: "Live Debugger", launch: "Live Debugger GA (AI-native debugging)", tier: "Net-new launch", date: "GA date pending", owner: "Eric Metaj", notes: "Full launch BOM; >50 trials/signups target; risk: GA slip", isLaunch: true, docLink: "https://docs.google.com/document/d/1yRbH3zi6ThS6D9nwnfylFLznlL98fqr3Pmgfchou9qw/edit?tab=t.87g1rb3fkgqq" },
+  { suite: "DEM", product: "DEM Suite / Journey Monitoring", launch: "Journey Monitoring GA", tier: "Tier 2", date: "Q3", owner: "Bridgitte Kwong / Stella Ma / Jessica Manheimer", notes: "Flagship entry point into unified DEM Suite", isLaunch: true, docLink: "https://docs.google.com/document/d/14iYIqizOD1IH4rntGrKdz0uJesz2cOLtqzBHMa0Y7uY/edit?pli=1&tab=t.y4mrpnhchjvi" },
+  { suite: "Security", product: "AI Guard", launch: "AI Guard GA launch", tier: "Prior Tier 1", date: "October 2026", owner: "Alexa Levine", notes: "BOM kickoff this quarter: messaging, landing page, DG campaign", isLaunch: true, docLink: "https://docs.google.com/document/d/1bq-oTHee0y1GZTlIB5K7SyixMtDlRIPshYVsUiZ1Thk/edit?tab=t.220racueconz" },
+  { suite: "DEM", product: "Synthetics", launch: "Bits Testing (AI-driven testing) GA", tier: "Full sales enablement", date: "Sept 25", owner: "Lauren Zuniga", notes: "First call deck, product/pricing page, battlecards", isLaunch: true, docLink: "https://docs.google.com/document/d/14iYIqizOD1IH4rntGrKdz0uJesz2cOLtqzBHMa0Y7uY/edit?pli=1&tab=t.fhj9yfxkb3wx" },
+  { suite: "APM/DBM/DO", product: "DBM", launch: "ClickHouse integration GA", tier: "Full GTM launch", date: "Q3", owner: "Sophie Bymark", notes: "Converting 16 preview customers to paid", isLaunch: true, docLink: "https://docs.google.com/document/d/1yqmuzURTQLfMLePw9kiy_Q1tpwbI_sIDegqcWhTOAl0/edit?tab=t.sdce4d30ww76" },
+  { suite: "DEM", product: "RUM", launch: "RUM Managed Archive, Recovery & Export GA", tier: "Not explicitly tiered", date: "Oct 1 GA", owner: "Stella Ma", notes: "Messaging manifesto, product wiki, GSC announcement", isLaunch: true, docLink: "https://docs.google.com/document/d/14iYIqizOD1IH4rntGrKdz0uJesz2cOLtqzBHMa0Y7uY/edit?pli=1&tab=t.aei8nqb7obss" },
+  { suite: "DEM", product: "RUM", launch: "RUM Profiling (Browser + Mobile) GA", tier: "Not explicitly tiered", date: "Oct 1 GA", owner: "Jessica Manheimer", notes: "Proof content, dogfooding blog, on-demand 30", isLaunch: true, docLink: "https://docs.google.com/document/d/14iYIqizOD1IH4rntGrKdz0uJesz2cOLtqzBHMa0Y7uY/edit?pli=1&tab=t.aei8nqb7obss" },
+  { suite: "Infra", product: "Serverless", launch: "Cloud Run Jobs GA", tier: "Not stated", date: "Q3", owner: "Michelle Lee", notes: "Launch blog + BOM assets", isLaunch: true, docLink: "https://docs.google.com/document/d/1trXtq3NgiQPLT09NzJ-UseqBqj75xSu_ufMRVD4lSdA/edit?tab=t.7zlsgwnfzly4" },
+  { suite: "Infra", product: "Serverless", launch: "Azure Functions Tracing GA", tier: "Not stated", date: "Q3", owner: "Michelle Lee", notes: "Launch blog + BOM assets", isLaunch: true, docLink: "https://docs.google.com/document/d/1trXtq3NgiQPLT09NzJ-UseqBqj75xSu_ufMRVD4lSdA/edit?tab=t.7zlsgwnfzly4" },
+  { suite: "DEM", product: "Product Analytics", launch: "Export SKU GA", tier: "Not stated", date: "Q3", owner: "Adam Virani", notes: "Announcement blog, landing page, one-pager, battlecard", isLaunch: true, docLink: "https://docs.google.com/document/d/14iYIqizOD1IH4rntGrKdz0uJesz2cOLtqzBHMa0Y7uY/edit?pli=1&tab=t.atscanqiqxo" },
+  { suite: "Security", product: "Cloud Security", launch: "CADR private preview (design partners)", tier: "Tier 1 (preview-scoped)", date: "Preview now; GA targeted re:Invent/RSA Q1'27", owner: "Christina DePinto", notes: "Narrative bridge to GA being built now", isLaunch: true, docLink: "https://docs.google.com/document/d/1cUxwSDKbHrFCWmqdYeWUmQo8xs8brvYFbuSlJTlifBs/edit?tab=t.g2yk91gk4r9w" },
+  { suite: "Logs", product: "Flex Logs", launch: "Flex tiered launch (XS+ / admin controls)", tier: "Not stated", date: "Q3, when features ship", owner: "Corey Brincks", notes: "Amplifies ongoing Flex expansion motion", isLaunch: true, docLink: "https://docs.google.com/document/d/1XADNn9kbLwsvUuVcX0VvqTMJLBszly4RbqMSkKeOw1g/edit?tab=t.0" },
+  { suite: "APM/DBM/DO", product: "Data Observability", launch: "Kafka Console GA", tier: "Tier 2/3 PMM BOM", date: "Commit SKU in 2 weeks; Oct 1 auto-bill", owner: "TBD (DO)", notes: "Core messaging, blog, pricing page, demo script", isLaunch: true, docLink: "https://docs.google.com/document/d/1yqmuzURTQLfMLePw9kiy_Q1tpwbI_sIDegqcWhTOAl0/edit?tab=t.shcesuaap84d" }
+];
+const LAUNCH_TYPE_MAP = {
+  13: "New Feature",
+  14: "New Integration",
+  16: "New Integration",
+  18: "New Feature",
+  19: "New Feature",
+  21: "New Feature",
+  23: "New Feature",
+  24: "New Integration",
+  27: "New Integration",
+  31: "New Feature",
+  35: "New Product",
+  36: "New Product",
+  40: "New Product",
+  50: "New Feature",
+  60: "New Integration"
+};
+const TIER_TO_TYPE = {
+  "Net-new launch": { label: "New Product", style: "bg-violet-600 text-white" },
+  "Prior Tier 1": { label: "New Product", style: "bg-violet-600 text-white" },
+  "Tier 1 (preview-scoped)": { label: "New Product", style: "bg-violet-600 text-white" },
+  "Priority launch": { label: "New Feature", style: "bg-sky-600 text-white" },
+  "Tier 2": { label: "New Feature", style: "bg-sky-600 text-white" },
+  "Full sales enablement": { label: "New Feature", style: "bg-sky-600 text-white" },
+  "Not explicitly tiered": { label: "New Feature", style: "bg-sky-600 text-white" },
+  "Not stated": { label: "New Feature", style: "bg-sky-600 text-white" },
+  "Full GTM launch": { label: "New Integration", style: "bg-teal-600 text-white" },
+  "Tier 2/3 PMM BOM": { label: "New Integration", style: "bg-teal-600 text-white" },
+  "Not stated (DASH Preview -> GA)": { label: "New Integration", style: "bg-teal-600 text-white" }
+};
+const LAUNCH_TEAMS_BY_TIER = {
+  "Priority launch": ["PM", "Brand", "Demand Gen", "Web/Content", "Sales Enablement", "AE", "SE", "CSM", "Event Marketing"],
+  "Net-new launch": ["PM", "Brand", "Demand Gen", "Web/Content", "Sales Enablement", "AE", "Event Marketing"],
+  "Full GTM launch": ["PM", "Brand", "Demand Gen", "Web/Content", "Sales Enablement", "AE", "CSM"],
+  "Tier 2": ["PM", "Demand Gen", "Web/Content", "Sales Enablement", "AE"],
+  "Prior Tier 1": ["PM", "Brand", "Demand Gen", "Web/Content", "Sales Enablement", "AE", "AR"],
+  "Full sales enablement": ["PM", "Sales Enablement", "AE", "SE", "Competitive Intel", "Web/Content"],
+  "Tier 1 (preview-scoped)": ["PM", "AR", "Comms"],
+  "Tier 2/3 PMM BOM": ["PM", "Demand Gen", "Web/Content", "Sales Enablement"],
+  "Not stated (DASH Preview -> GA)": ["PM", "Brand", "Demand Gen", "Web/Content", "Sales Enablement"],
+  "Not stated": ["PM", "Web/Content"],
+  "Not explicitly tiered": ["PM", "Web/Content", "Demand Gen"]
+};
+const ASSET_TO_STAKEHOLDERS = {
+  "Campaign (DG)": ["Demand Gen", "AE", "CSM", "Customer Marketing", "Sales Enablement"],
+  Battlecard: ["AE", "SE", "CSM", "Competitive Intel", "Sales Enablement"],
+  "Core Messaging": ["Sales Enablement", "SE", "AE", "PM"],
+  "Content Series": ["Demand Gen", "Web/Content", "Customer Marketing", "PM"],
+  "Cross-sell Sales Play": ["AE", "CSM", "Sales Enablement", "Demand Gen", "PM"],
+  "Sales Enablement Session": ["Sales Enablement", "AE", "SE", "CSM"],
+  "Pricing & Packaging": ["Sales Enablement", "CSM", "SE", "AE", "PM"],
+  "Analyst Briefing": ["PM", "AR"],
+  "Launch (Product)": ["PM", "AE", "SE", "CSM", "Demand Gen", "Sales Enablement", "Event Marketing", "Brand", "Web/Content"]
+};
+const ASSET_TO_DEPS = {
+  "Campaign (DG)": ["Demand Gen", "Web/Content", "Customer Marketing", "PM"],
+  Battlecard: ["Competitive Intel", "PM"],
+  "Core Messaging": ["PM", "Web/Content"],
+  "Content Series": ["Demand Gen", "Web/Content", "Customer Marketing"],
+  "Cross-sell Sales Play": ["PM", "Demand Gen", "RevOps", "Sales Enablement"],
+  "Sales Enablement Session": ["Sales Enablement", "PM"],
+  "Pricing & Packaging": ["PM", "Engineering"],
+  "Analyst Briefing": ["PM", "AR"],
+  "Launch (Product)": ["PM", "Engineering", "Demand Gen", "Brand", "Web/Content", "Event Marketing"]
+};
+const OKR_TEAMS_ACTUAL = {
+  0: { stakeholders: ["PM", "AE", "CSM"], deps: ["AE", "CSM"] },
+  1: { stakeholders: ["Sales Enablement", "CSM", "SE", "AE", "PM"], deps: ["PM", "Engineering"] },
+  2: { stakeholders: ["AE", "CSM", "PM"], deps: ["PM", "Demand Gen"] },
+  3: { stakeholders: ["Demand Gen", "Customer Marketing", "Sales Enablement", "CSM", "PM", "Partner Marketing"], deps: ["Demand Gen", "Web/Content", "Customer Marketing", "Engineering", "PM"] },
+  4: { stakeholders: ["Sales Enablement", "SE", "Competitive Intel", "Demand Gen"], deps: ["Competitive Intel", "Engineering"] },
+  5: { stakeholders: ["Sales Enablement", "SE", "Competitive Intel", "RevOps"], deps: ["Competitive Intel", "Sales Enablement"] },
+  6: { stakeholders: ["PM", "Demand Gen", "Sales Enablement", "Customer Marketing"], deps: ["PM", "Demand Gen"] },
+  7: { stakeholders: ["PM", "Sales Enablement"], deps: ["PM", "Sales Enablement"] },
+  8: { stakeholders: ["PM", "Brand", "Sales Enablement", "Web/Content"], deps: ["PM", "Web/Content"] },
+  9: { stakeholders: ["APM PMM", "PM", "Sales Enablement", "RevOps", "Demand Gen", "Brand", "Competitive Intel"], deps: ["PM", "RevOps", "Demand Gen", "Competitive Intel"] },
+  10: { stakeholders: ["Demand Gen", "Web/Content", "Brand", "Customer Marketing", "PM"], deps: ["Demand Gen", "Web/Content"] },
+  11: { stakeholders: ["Demand Gen", "PM", "Web/Content"], deps: ["Web/Content", "PM"] },
+  12: { stakeholders: ["Customer Marketing", "PM", "Sales Enablement", "Competitive Intel"], deps: ["Competitive Intel", "PM", "Customer Marketing"] },
+  13: { stakeholders: ["PM", "Sales Enablement", "APM PMM"], deps: ["PM", "Web/Content", "Engineering"] },
+  14: { stakeholders: ["PM", "Sales", "Web/Content", "Event Marketing"], deps: ["PM", "Engineering", "Event Marketing"] },
+  15: { stakeholders: ["PM", "Sales", "Competitive Intel", "AR"], deps: ["Competitive Intel", "PM", "AR"] },
+  16: { stakeholders: ["PM", "Sales", "Web/Content", "Comms"], deps: ["PM", "Engineering", "Web/Content"] },
+  17: { stakeholders: ["PM", "Customer Marketing", "Demand Gen", "Sales"], deps: ["Customer Marketing", "PM", "Demand Gen"] },
+  18: { stakeholders: ["PM", "Sales Enablement", "Demand Gen"], deps: ["PM", "Engineering", "Demand Gen"] },
+  19: { stakeholders: ["PM", "Sales Enablement", "SE", "AE"], deps: ["PM", "Engineering", "Sales Enablement"] },
+  20: { stakeholders: ["PM", "Engineering", "Web/Content", "Brand"], deps: ["PM", "Engineering", "Web/Content"] },
+  21: { stakeholders: ["APM PMM", "PM", "Sales Enablement", "Customer Marketing", "Brand", "Web/Content"], deps: ["PM", "Sales Enablement", "Demand Gen"] },
+  22: { stakeholders: ["PM", "Sales Enablement", "Demand Gen"], deps: ["PM", "Engineering"] },
+  23: { stakeholders: ["PM", "Sales Enablement", "Web/Content"], deps: ["PM", "Engineering", "Web/Content"] },
+  24: { stakeholders: ["Sales Enablement", "PM", "Customer Marketing", "Competitive Intel"], deps: ["Competitive Intel", "PM", "Customer Marketing"] },
+  25: { stakeholders: ["PM", "Sales Enablement", "CSM", "AE", "Demand Gen"], deps: ["PM", "Engineering", "Demand Gen"] },
+  26: { stakeholders: ["PM", "Sales Enablement", "Web/Content"], deps: ["PM", "Engineering", "Web/Content"] },
+  27: { stakeholders: ["PM", "Sales Enablement", "Demand Gen", "AR", "Brand", "Comms"], deps: ["PM", "Demand Gen", "Brand", "Engineering"] },
+  28: { stakeholders: ["PM", "AR", "AE", "CSM", "SE", "Sales Enablement"], deps: ["PM", "AR", "Web/Content"] },
+  29: { stakeholders: ["Brand", "Demand Gen", "Partner Marketing", "Event Marketing", "PM"], deps: ["Partner Marketing", "Demand Gen", "Brand"] },
+  30: { stakeholders: ["PM", "Web/Content", "Demand Gen", "Brand"], deps: ["PM", "Engineering", "Web/Content"] },
+  31: { stakeholders: ["PM", "Sales Enablement", "Web/Content", "Comms"], deps: ["PM", "Engineering", "Web/Content", "Demand Gen"] },
+  32: { stakeholders: ["Sales Enablement", "Customer Marketing", "Sales", "Event Marketing", "Demand Gen", "PM", "Competitive Intel", "Partner Marketing"], deps: ["Competitive Intel", "PM", "Customer Marketing", "Partner Marketing"] },
+  33: { stakeholders: ["SE", "Sales Enablement", "PM", "CSM"], deps: ["PM", "Sales Enablement"] },
+  34: { stakeholders: ["Web/Content", "AR", "PM", "Competitive Intel"], deps: ["AR", "PM", "Competitive Intel", "Web/Content"] },
+  35: { stakeholders: ["PM", "Sales Enablement", "AE", "CSM", "Event Marketing", "AR"], deps: ["PM", "Brand", "Demand Gen", "Event Marketing", "Sales Enablement"] },
+  36: { stakeholders: ["PM", "AR", "Demand Gen"], deps: ["PM", "AR"] },
+  37: { stakeholders: ["Sales Enablement", "AE", "SE", "Competitive Intel"], deps: ["Competitive Intel", "Sales Enablement", "PM"] },
+  38: { stakeholders: ["AE", "SE", "Competitive Intel"], deps: ["Competitive Intel", "PM"] },
+  39: { stakeholders: ["Demand Gen", "Event Marketing", "AE", "CSM"], deps: ["Demand Gen", "Event Marketing", "PM"] },
+  40: { stakeholders: ["PM", "SE", "CSM", "Sales Enablement", "Brand", "Event Marketing"], deps: ["PM", "Engineering", "Brand", "Sales Enablement"] },
+  41: { stakeholders: ["Sales Enablement", "PM", "Web/Content", "Engineering"], deps: ["PM", "Web/Content"] },
+  47: { stakeholders: ["AE", "SE", "Competitive Intel", "Sales Enablement"], deps: ["Competitive Intel", "PM"] },
+  48: { stakeholders: ["Brand", "Event Marketing", "Partner Marketing", "Demand Gen", "PM"], deps: ["Brand", "Event Marketing", "Partner Marketing"] },
+  49: { stakeholders: ["Customer Marketing", "AE", "CSM", "Sales Enablement"], deps: ["Customer Marketing", "PM"] },
+  50: { stakeholders: ["Sales Enablement", "AE", "PM", "RevOps"], deps: ["PM", "RevOps", "Sales Enablement"] },
+  51: { stakeholders: ["Sales Enablement", "AE", "SE", "Competitive Intel"], deps: ["Sales Enablement", "PM"] },
+  52: { stakeholders: ["Customer Marketing", "Sales Enablement", "AE", "SE"], deps: ["Customer Marketing", "PM", "Sales Enablement"] },
+  53: { stakeholders: ["AR", "PM", "Web/Content"], deps: ["AR", "PM"] },
+  54: { stakeholders: ["Sales", "AE", "RevOps", "Sales Enablement"], deps: ["Sales", "RevOps", "PM"] },
+  55: { stakeholders: ["Demand Gen", "Web/Content", "PM", "Sales Enablement", "Event Marketing"], deps: ["PM", "Web/Content", "Demand Gen"] },
+  56: { stakeholders: ["AE", "CSM", "Sales Enablement", "Competitive Intel"], deps: ["AE", "Competitive Intel"] },
+  57: { stakeholders: ["Customer Marketing", "AE", "SE", "Web/Content"], deps: ["Customer Marketing", "PM"] },
+  58: { stakeholders: ["Event Marketing", "Brand", "AE", "Partner Marketing"], deps: ["Event Marketing", "Partner Marketing"] },
+  59: { stakeholders: ["Sales Enablement", "AE", "Partner Marketing"], deps: ["Partner Marketing", "PM"] },
+  60: { stakeholders: ["Sales Enablement", "Web/Content", "Demand Gen", "Brand"], deps: ["PM", "Brand", "Web/Content"] },
+  61: { stakeholders: ["Competitive Intel", "AE", "SE", "Sales Enablement"], deps: ["Competitive Intel", "PM"] },
+  62: { stakeholders: ["Partner Marketing", "Event Marketing", "Demand Gen", "Sales Enablement"], deps: ["Partner Marketing", "Event Marketing"] },
+  63: { stakeholders: ["Competitive Intel", "SE", "Sales Enablement", "PM"], deps: ["Competitive Intel", "PM"] },
+  64: { stakeholders: ["Sales Enablement", "SE", "CSM", "AE"], deps: ["Sales Enablement", "PM"] },
+  65: { stakeholders: ["Event Marketing", "AE", "CSM", "Partner Marketing"], deps: ["Event Marketing", "AE"] },
+  66: { stakeholders: ["PM", "Sales Enablement", "AE", "SE"], deps: ["PM", "Engineering"] },
+  67: { stakeholders: ["Event Marketing", "Brand", "Demand Gen", "Sales Enablement"], deps: ["Event Marketing", "Brand"] },
+  68: { stakeholders: ["PM", "Web/Content", "Sales Enablement", "AE"], deps: ["PM", "Web/Content", "Engineering"] }
+};
+const ALL_STAKEHOLDERS = ["All Stakeholders", "AE", "CSM", "SE", "PM", "Brand", "Demand Gen", "Customer Marketing", "Event Marketing", "Sales Enablement", "AR", "Web/Content", "Competitive Intel", "RevOps", "Partner Marketing", "Engineering", "Comms"];
+const ALL_TEAMS_INVOLVED = ["All Teams Involved", "Brand", "Demand Gen", "Customer Marketing", "Event Marketing", "Sales Enablement", "AE", "CSM", "SE", "PM", "AR", "Competitive Intel", "Web/Content", "Partner Marketing", "RevOps", "Engineering", "Comms"];
+const STAKEHOLDER_DIGEST = {
+  Brand: {
+    emoji: "\uD83C\uDFA8",
+    role: "You own the look, feel, and voice of everything that goes external.",
+    tldr: "Brand is involved in almost every launch, messaging refresh, and campaign this quarter. Your biggest lift is Q3 launches — multiple GAs need landing pages, visual assets, and brand-approved copy before they ship.",
+    actions: [
+      "Review and approve messaging manifests for every Core Messaging OKR before they go to sales",
+      "Support launch BOM assets for every 'Launch (Product)' OKR — landing pages, email headers, social graphics",
+      "Align on the DevOps Loop and AI suite visual narrative with Brianne and Nicole",
+      "Be looped in on every Campaign (DG) brief before it goes into production",
+      "Review pricing page updates for APM Basic, ClickHouse, and Flex Logs"
+    ],
+    watchOut: "Several launches are happening simultaneously in late Q3 (RUM, Journey Monitoring, Live Debugger, Bits Testing). Prioritize capacity now to avoid bottlenecks at GA time."
+  },
+  "Demand Gen": {
+    emoji: "\uD83D\uDCC8",
+    role: "You turn PMM content and campaigns into pipeline. If an OKR needs leads, MQLs, or pipeline — it comes to you.",
+    tldr: "DG is a dependency for 3 major campaigns and multiple content series this quarter. Bits AI and SIEM Guard Dog are the biggest pipeline bets — both have specific MQL and pipeline targets.",
+    actions: [
+      "Activate the Bits Investigations campaign with Brianne — $5M pipeline target, 2 webinars needed",
+      "Run Guard Dog enterprise campaign with Sean — 1,500+ account target list",
+      "Support CCM FinOps expansion campaign with Dom",
+      "Set up email nurture sequences for IR upsell (Curtis) — ~1,100 account target list",
+      "Coordinate webinar production for Agent Observability content series (Will) — 3 webinars, 600+ MQL target"
+    ],
+    watchOut: "Multiple campaigns are running in parallel. Make sure Bits AI, IR, and SIEM Guard Dog are sequenced so you're not flooding the same personas at the same time."
+  },
+  "Customer Marketing": {
+    emoji: "\uD83E\uDD1D",
+    role: "You bring the customer voice in — case studies, references, advocacy, and proof points.",
+    tldr: "Customer Marketing is needed across sales enablement, competitive, and content OKRs. The biggest asks are case studies for Bits AI and Airlift (Splunk displacement), plus win-wire stories for Incident Response.",
+    actions: [
+      "Source and produce 4 Bits Investigations case studies (Brianne) for the DG campaign",
+      "Source 3 global APM case studies for the competitive Dynatrace battlecard refresh (Anthony)",
+      "Support IR win-wire repository — 10-15 customer win/loss stories needed (Curtis)",
+      "Provide proof points and customer quotes for Airlift ABM accounts (Andy)",
+      "Contribute customer evidence for the Wiz competitive battlecard (Christina)"
+    ],
+    watchOut: "Multiple teams need case studies at the same time. Triage requests by pipeline impact — Bits AI and Airlift have the highest revenue stakes this quarter."
+  },
+  "Event Marketing": {
+    emoji: "\uD83C\uDFAA",
+    role: "You own the in-person and virtual moments that create awareness and pipeline at scale.",
+    tldr: "Events are a key activation channel for several Q3 OKRs. DASH is already referenced as a key milestone, and Black Hat is a major Security activation. Several launches have event-tied announcements.",
+    actions: [
+      "Support Black Hat activation for SIEM Guard Dog campaign (Sean) and Cloud Security (Christina)",
+      "Plan DASH follow-through — OTel K8s Explorer preview and Bits Infrastructure Operations both have post-DASH content plans",
+      "Coordinate Supabase NYC rooftop co-marketing event (Aug 4) with Sophie for ClickHouse launch",
+      "Support webinar production for IR upsell campaign (Curtis) — 3 webinars planned",
+      "Flag re:Invent planning now — Cloud (James Harper team) and Cloud Security (Christina) both have Q4/re:Invent narratives being built this quarter"
+    ],
+    watchOut: "re:Invent is already showing up in Q3 OKR planning. Start syncing with Cloud and Security PMMs now so the narrative is locked before the event planning crunch."
+  },
+  AE: {
+    emoji: "\uD83D\uDCBC",
+    role: "You close the deals. PMM is building the tools, messaging, and plays you need to win.",
+    tldr: "A large portion of Q3 OKRs exist specifically to make your deals easier — new battlecards, pricing FAQs, first call decks, and cross-sell plays are all being built for you this quarter.",
+    actions: [
+      "Attend the Agent Interfaces pricing PFD (Aug 20) — new Bits vs MCP pricing model launching",
+      "Get certified on the Wiz competitive battlecard (Christina's AE certification program)",
+      "Use the new APM+AO cross-sell play for accounts with APM but no Agent Observability",
+      "Use the RUM x APM cross-sell play for RUM-only accounts",
+      "Expect new first call decks for: Live Debugger, Bits Testing, Journey Monitoring, Agent Builder"
+    ],
+    watchOut: "New pricing for Agent Interfaces (Bits, MCP, Agent Builder) is launching this quarter. Get up to speed before customer conversations — attend the Aug 20 PFD."
+  },
+  "Sales Enablement": {
+    emoji: "\uD83C\uDF93",
+    role: "You make sure AEs and SEs can pitch and demo what PMM builds.",
+    tldr: "Q3 has an unusually high number of enablement-heavy OKRs — multiple PFDs, a new pricing model, and several new first call decks all need to go through your team.",
+    actions: [
+      "Schedule Agent Interfaces pricing PFD (Aug 20) with Nicole",
+      "Build out enablement plan for Live Debugger GA launch (Eric) — 100+ AEs/SEs need to be enabled",
+      "Coordinate Bits Testing enablement package (Lauren) — first call deck, battlecards, demo script",
+      "Support win-loss enablement hub rebuild for Incident Response (Curtis)",
+      "Plan DBM competitive enablement session for 7 refreshed battlecards (Sophie)"
+    ],
+    watchOut: "Late Q3 will be heavy — Live Debugger, Bits Testing, Journey Monitoring, and RUM are all going GA around the same time. Start scheduling enablement sessions now."
+  },
+  "Web/Content": {
+    emoji: "✍️",
+    role: "You write, publish, and maintain every external-facing page, blog, and asset. If it goes live, it comes through you.",
+    tldr: "Web/Content is a dependency for 20+ OKRs this quarter — almost every launch, content campaign, and messaging update needs a blog, landing page, or web update. Late Q3 is your crunch time.",
+    actions: [
+      "Write launch blogs and update product pages for: Log Findings GA, OTel-native APM GA, Journey Monitoring, Live Debugger, Bits Testing, ClickHouse, RUM Profiling (all shipping Q3)",
+      "Publish DevOps Loop eBook and benchmarking whitepaper for Brianne's $5M DG campaign",
+      "Update the APM pricing page for the APM Basic launch (Anthony)",
+      "Support the AI cost/tokenomics guide for Tori's Data Observability top-of-funnel push",
+      "Write 8 Agent Observability blogs for Will's content engine (target: 600+ MQLs)",
+      "Coordinate with Network Monitoring (Paolo) and On-Prem (April) on manifesto and web updates"
+    ],
+    watchOut: "Multiple GAs are landing in the same 4-week window (late Sept to Oct 1). Triage launch blog priority now — Log Findings, OTel APM, and Live Debugger are the highest-impact."
+  },
+  PM: {
+    emoji: "\uD83E\uDDED",
+    role: "You own the product roadmap and GA dates. PMM can't launch, message, or enable without your sign-off.",
+    tldr: "PM is listed as a dependency or stakeholder on nearly every Q3 OKR. Your biggest unlock this quarter is confirming GA dates — multiple PMMs have launch assets blocked until product confirms ship dates.",
+    actions: [
+      "Confirm GA dates for: Log Findings, OTel-native APM, K8s Explorer, Live Debugger, Bits Testing, Journey Monitoring, RUM Profiling, AI Guard (Oct) — all PMMs need these to finalize launch BOM",
+      "Sign off on messaging manifestos for: Agent Observability, Network Monitoring, Container/K8s, CI/CD Optimization, BYOC",
+      "Participate in the Agent Interfaces pricing PFD (Aug 20) to align on Bits vs MCP pricing model",
+      "Provide input on AI cost/tokenomics narrative for Data Observability content campaign (Tori)",
+      "Confirm Standalone CCM Agent GTM readiness for Dom's FinOps expansion campaign"
+    ],
+    watchOut: "The most common blocker across all Q3 OKRs is 'waiting on PM to confirm GA date or messaging sign-off.' A weekly PMM-PM sync would unblock the most work fastest."
+  },
+  "Competitive Intel": {
+    emoji: "\uD83D\uDD0D",
+    role: "You track what competitors are doing and arm the field with battlecards and positioning.",
+    tldr: "Competitive Intel is a dependency for 7+ OKRs this quarter — battlecards are being refreshed across APM, DBM, Cloud Security, Airlift, OTel, and Code Security.",
+    actions: [
+      "Support Dynatrace battlecard refresh for APM (Anthony) — currently at 950 views, needs update",
+      "Provide competitive data for Grafana vs OTel positioning (David Iparraguirre)",
+      "Support Wiz battlecard refresh and AE certification program (Christina DePinto)",
+      "Provide Splunk competitive inputs for Airlift ABM campaign (Andy Lihani) — top 100 accounts",
+      "Supply inputs for DevOps Loop competitive positioning (Brianne) — deal-stage battlecards",
+      "Support Code Security battlecard upkeep vs Splunk and Dynatrace (Daniel Blazquez)"
+    ],
+    watchOut: "Airlift and Cloud Security are the highest-urgency competitive battlecard requests. Both have direct pipeline implications (Splunk displacement and Wiz deals) this quarter."
+  },
+  AR: {
+    emoji: "\uD83D\uDCCA",
+    role: "You manage analyst relationships and briefings. PMM needs you for credibility at GA and to influence key reports.",
+    tldr: "AR is a dependency for 4 OKRs this quarter — Cloud Security (CADR), DBM (Gartner MQ), Network Monitoring (manifesto), and CCM (FinOps credibility).",
+    actions: [
+      "Schedule analyst briefings for CADR private preview (Christina) — building momentum toward re:Invent/RSA Q1'27 GA",
+      "Support the Gartner Telemetry Pipelines MQ push for DBM (Sophie) — target Gartner MQ Leader positioning",
+      "Validate the Network Monitoring messaging manifesto (Paolo) — analyst input needed before finalizing",
+      "Support CCM FinOps credibility OKR (Dom) — FinOps Foundation and analyst briefings are a key dependency"
+    ],
+    watchOut: "CADR analyst briefings need to happen in Q3 to build sufficient momentum for a Q1'27 GA. Don't let this slip — it's a long lead-time dependency."
+  },
+  SE: {
+    emoji: "\uD83D\uDEE0️",
+    role: "You run technical demos and support field sales. PMM builds the demo scripts, battlecards, and first call decks you use.",
+    tldr: "SEs are key stakeholders across 15+ Q3 OKRs. The biggest asks are around the new Agent Interfaces pricing, competitive battlecards, and GA launch demos.",
+    actions: [
+      "Attend Agent Interfaces pricing PFD (Aug 20) — new Bits vs MCP pricing model affects your demo conversations",
+      "Provide win/loss input for Brianne's DevOps Loop competitive battlecards",
+      "Use the new Grafana competitive battlecard from David when positioning OTel-native APM",
+      "Attend DBM competitive enablement session for 7 refreshed battlecards (Sophie)",
+      "Support Live Debugger and Bits Testing GA enablement sessions (Eric, Lauren)"
+    ],
+    watchOut: "Multiple new products are going GA in late Q3. Make sure you're in all GA enablement sessions — attending is how you avoid being caught off guard in customer calls."
+  },
+  CSM: {
+    emoji: "\uD83E\uDD32",
+    role: "You manage existing customers. PMM builds the expansion plays, case studies, and cross-sell motions that help you grow accounts.",
+    tldr: "CSMs are stakeholders in expansion campaigns, cross-sell plays, and customer proof programs. Key asks this quarter are around RUM→APM cross-sell, Airlift ABM, and Flex Logs expansion.",
+    actions: [
+      "Use the RUM x APM cross-sell play to expand RUM-only accounts into APM and Session Replay (Stella)",
+      "Support Airlift ABM outreach to top 100 Splunk accounts — CSM introductions are a dependency (Andy)",
+      "Participate in BYOC pipeline re-engagement — CSM target account list is being built (Anusha)",
+      "Provide customer references for DO proof point campaign (Tori) — customer approval needed",
+      "Use new first call decks when expanding accounts into Agent Observability (Will)"
+    ],
+    watchOut: "Airlift ABM requires CSM introductions to move forward. If CSMs aren't looped in early, the top 100 account outreach can't launch on schedule."
+  },
+  RevOps: {
+    emoji: "\uD83D\uDCCB",
+    role: "You own the data, target lists, and attribution models that make campaigns and cross-sell plays work.",
+    tldr: "RevOps is a dependency for 3 cross-sell and expansion OKRs this quarter — Agent Observability APM cross-sell, Flex Logs expansion, and Airlift ABM all need target lists or attach-eligible account data.",
+    actions: [
+      "Pull attach-eligible APM account list for Will's Agent Observability cross-sell play",
+      "Build the Flex Logs expansion target list for Corey's $100M ARR expansion motion",
+      "Provide account segmentation for Airlift ABM (top 100 Splunk accounts) with Andy"
+    ],
+    watchOut: "Cross-sell plays can't launch until RevOps provides the account lists. Align with Will, Corey, and Andy on their data needs before end of July."
+  },
+  "Partner Marketing": {
+    emoji: "\uD83E\uDD1D",
+    role: "You manage co-marketing and partner programs. PMM needs you for cloud co-marketing and Airlift partner campaigns.",
+    tldr: "Partner Marketing is a dependency for the Cloud team's Q3 OKRs (AWS/GCP/Azure co-marketing) and Andy's Airlift Splunk displacement program.",
+    actions: [
+      "Align with James Harper, Mohammad Jama, Katarina Knezevic, and Cody Murray-Bruce on cloud co-marketing campaigns and re:Invent narrative",
+      "Support Andy Lihani's Airlift ABM with partner outreach for the top 100 Splunk displacement accounts"
+    ],
+    watchOut: "Cloud partnership co-marketing needs to be locked before re:Invent planning begins in earnest. Q3 is when the narrative is built — Q4 is when it ships."
+  }
+};
+const ALL_DEPS = ["All Dependencies", "Brand", "Demand Gen", "Customer Marketing", "Event Marketing", "PM", "Eng", "AE", "CSM", "Sales Enablement", "Content", "AR", "Competitive Intel", "Product"];
+const ASSET_TO_TEAMS = {
+  "Campaign (DG)": ["Demand Gen", "Brand"],
+  Battlecard: ["Brand", "Customer Marketing"],
+  "Core Messaging": ["Brand"],
+  "Content Series": ["Brand", "Demand Gen", "Customer Marketing"],
+  "Cross-sell Sales Play": ["Demand Gen", "Customer Marketing"],
+  "Sales Enablement Session": ["Customer Marketing"],
+  "Pricing & Packaging": ["Brand", "Demand Gen"],
+  "Analyst Briefing": ["Brand"],
+  "Launch (Product)": ["Brand", "Demand Gen", "Event Marketing", "Customer Marketing"]
+};
+const TEAM_COLORS = {
+  Brand: "bg-indigo-100 text-indigo-700",
+  "Demand Gen": "bg-violet-100 text-violet-700",
+  "Customer Marketing": "bg-emerald-100 text-emerald-700",
+  "Event Marketing": "bg-amber-100 text-amber-700"
+};
+const ASSET_COLORS = {
+  "Campaign (DG)": "bg-violet-100 text-violet-700",
+  Battlecard: "bg-rose-100 text-rose-700",
+  "Core Messaging": "bg-sky-100 text-sky-700",
+  "Content Series": "bg-emerald-100 text-emerald-700",
+  "Cross-sell Sales Play": "bg-amber-100 text-amber-700",
+  "Sales Enablement Session": "bg-indigo-100 text-indigo-700",
+  "Pricing & Packaging": "bg-orange-100 text-orange-700",
+  "Analyst Briefing": "bg-teal-100 text-teal-700",
+  "Launch (Product)": "bg-pink-100 text-pink-700"
+};
+const SUITE_COLORS = {
+  AI: { text: "text-violet-700", bg: "bg-violet-50", border: "border-violet-200" },
+  "APM/DBM/DO": { text: "text-sky-700", bg: "bg-sky-50", border: "border-sky-200" },
+  DEM: { text: "text-emerald-700", bg: "bg-emerald-50", border: "border-emerald-200" },
+  Infra: { text: "text-indigo-700", bg: "bg-indigo-50", border: "border-indigo-200" },
+  Logs: { text: "text-amber-700", bg: "bg-amber-50", border: "border-amber-200" },
+  Security: { text: "text-rose-700", bg: "bg-rose-50", border: "border-rose-200" },
+  "Software Delivery": { text: "text-teal-700", bg: "bg-teal-50", border: "border-teal-200" }
+};
+const OBJ_TYPES = ["All Categories", "Driving Pipeline/DG Impact", "Educating Prospects/Content Impact", "Enabling Sales/Increasing Win Rates", "Improving Competitive Performance", "Improving Messaging/Positioning", "Increasing Adoption/Expansion", "Launching a Product/Feature"];
+const ASSET_TYPES = ["All Asset Types", "Campaign (DG)", "Battlecard", "Core Messaging", "Content Series", "Cross-sell Sales Play", "Sales Enablement Session", "Pricing & Packaging", "Analyst Briefing", "Launch (Product)"];
+const SUITES = ["All Suites", "Cross-Product", "AI", "APM/DBM/DO", "DEM", "Infra", "Logs", "Security", "Software Delivery"];
+function OKRCard({ item, showSuite = false }) {
+  const [expanded, setExpanded] = useState(false);
+  const sc = SUITE_COLORS[item.suite] || { text: "text-gray-700", bg: "bg-gray-50", border: "border-gray-200" };
+  const ac = ASSET_COLORS[item.assetType] || "bg-gray-100 text-gray-600";
+  const idx = OKR_DATA.indexOf(item);
+  const actualTeams = OKR_TEAMS_ACTUAL[idx];
+  const stakeholderList = actualTeams?.stakeholders ?? ASSET_TO_STAKEHOLDERS[item.assetType] ?? [];
+  const depsList = actualTeams?.deps ?? ASSET_TO_DEPS[item.assetType] ?? [];
+  const teams = ASSET_TO_TEAMS[item.assetType] || [];
+  const isCross = item.crossProduct;
+  const crossSuites = item.crossSuites;
+  return jsxDEV_7x81h0kn("div", {
+    className: `rounded-lg border ${sc.border} bg-card overflow-hidden`,
+    children: [
+      jsxDEV_7x81h0kn("button", {
+        onClick: () => setExpanded(!expanded),
+        className: "w-full text-left p-3 hover:bg-muted/30 transition-colors",
+        children: jsxDEV_7x81h0kn("div", {
+          className: "flex items-start gap-2",
+          children: [
+            jsxDEV_7x81h0kn("div", {
+              className: "flex-1 min-w-0",
+              children: [
+                jsxDEV_7x81h0kn("div", {
+                  className: "flex flex-wrap items-center gap-1.5 mb-1",
+                  children: [
+                    showSuite && jsxDEV_7x81h0kn("span", {
+                      className: `text-xs font-bold px-1.5 py-0.5 rounded ${sc.bg} ${sc.text}`,
+                      children: item.suite
+                    }, undefined, false, undefined, this),
+                    jsxDEV_7x81h0kn("span", {
+                      className: `text-xs font-medium px-1.5 py-0.5 rounded ${ac}`,
+                      children: item.tacticTheme
+                    }, undefined, false, undefined, this),
+                    jsxDEV_7x81h0kn("span", {
+                      className: `text-xs font-bold px-1.5 py-0.5 rounded ${item.priority === "P0" ? "bg-red-100 text-red-700" : "bg-gray-100 text-gray-500"}`,
+                      children: item.priority
+                    }, undefined, false, undefined, this),
+                    isCross && jsxDEV_7x81h0kn("span", {
+                      className: "text-xs font-bold px-1.5 py-0.5 rounded bg-yellow-100 text-yellow-700 border border-yellow-300",
+                      title: crossSuites,
+                      children: "⇄ Cross-Product"
+                    }, undefined, false, undefined, this)
+                  ]
+                }, undefined, true, undefined, this),
+                jsxDEV_7x81h0kn("p", {
+                  className: "text-sm font-medium text-foreground leading-snug",
+                  children: item.objective
+                }, undefined, false, undefined, this),
+                jsxDEV_7x81h0kn("p", {
+                  className: "text-xs text-muted-foreground mt-0.5",
+                  children: [
+                    item.product,
+                    " · ",
+                    item.owner
+                  ]
+                }, undefined, true, undefined, this)
+              ]
+            }, undefined, true, undefined, this),
+            jsxDEV_7x81h0kn("div", {
+              className: "shrink-0 mt-0.5",
+              children: expanded ? jsxDEV_7x81h0kn("span", {
+                dangerouslySetInnerHTML: { __html: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>` }
+              }, undefined, false, undefined, this) : jsxDEV_7x81h0kn("span", {
+                dangerouslySetInnerHTML: { __html: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>` }
+              }, undefined, false, undefined, this)
+            }, undefined, false, undefined, this)
+          ]
+        }, undefined, true, undefined, this)
+      }, undefined, false, undefined, this),
+      expanded && jsxDEV_7x81h0kn("div", {
+        className: `px-3 pb-3 pt-2 border-t ${sc.border} ${sc.bg} space-y-2`,
+        children: [
+          item.tacticsSummary && jsxDEV_7x81h0kn("div", {
+            children: [
+              jsxDEV_7x81h0kn("p", {
+                className: "text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-0.5",
+                children: "Tactics Summary"
+              }, undefined, false, undefined, this),
+              jsxDEV_7x81h0kn("p", {
+                className: "text-xs text-foreground",
+                children: item.tacticsSummary
+              }, undefined, false, undefined, this)
+            ]
+          }, undefined, true, undefined, this),
+          jsxDEV_7x81h0kn("div", {
+            children: [
+              jsxDEV_7x81h0kn("p", {
+                className: "text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-0.5",
+                children: "Key Tactics / Initiatives"
+              }, undefined, false, undefined, this),
+              jsxDEV_7x81h0kn("p", {
+                className: "text-xs text-foreground",
+                children: item.keyTactics
+              }, undefined, false, undefined, this)
+            ]
+          }, undefined, true, undefined, this),
+          stakeholderList.length > 0 && jsxDEV_7x81h0kn("div", {
+            children: [
+              jsxDEV_7x81h0kn("p", {
+                className: "text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1",
+                children: "Teams Involved"
+              }, undefined, false, undefined, this),
+              jsxDEV_7x81h0kn("div", {
+                className: "flex flex-wrap gap-1 mb-1",
+                children: [
+                  jsxDEV_7x81h0kn("span", {
+                    className: "text-xs text-muted-foreground font-medium mr-1",
+                    children: "Stakeholders:"
+                  }, undefined, false, undefined, this),
+                  stakeholderList.map((t) => jsxDEV_7x81h0kn("span", {
+                    className: "text-xs px-1.5 py-0.5 rounded-full bg-sky-100 text-sky-700 font-medium",
+                    children: t
+                  }, t, false, undefined, this))
+                ]
+              }, undefined, true, undefined, this),
+              depsList.length > 0 && jsxDEV_7x81h0kn("div", {
+                className: "flex flex-wrap gap-1",
+                children: [
+                  jsxDEV_7x81h0kn("span", {
+                    className: "text-xs text-muted-foreground font-medium mr-1",
+                    children: "Dependencies:"
+                  }, undefined, false, undefined, this),
+                  depsList.map((t) => jsxDEV_7x81h0kn("span", {
+                    className: "text-xs px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 font-medium",
+                    children: t
+                  }, t, false, undefined, this))
+                ]
+              }, undefined, true, undefined, this)
+            ]
+          }, undefined, true, undefined, this),
+          isCross && crossSuites && jsxDEV_7x81h0kn("div", {
+            children: [
+              jsxDEV_7x81h0kn("p", {
+                className: "text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-0.5",
+                children: "Cross-Product Collaboration"
+              }, undefined, false, undefined, this),
+              jsxDEV_7x81h0kn("p", {
+                className: "text-xs font-medium text-yellow-700",
+                children: crossSuites
+              }, undefined, false, undefined, this)
+            ]
+          }, undefined, true, undefined, this),
+          item.docLink && jsxDEV_7x81h0kn("a", {
+            href: item.docLink,
+            target: "_blank",
+            rel: "noopener noreferrer",
+            className: "inline-flex items-center gap-1 text-xs font-semibold text-indigo-600 hover:underline mt-1",
+            children: [
+              jsxDEV_7x81h0kn("span", {
+                dangerouslySetInnerHTML: { __html: `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>` }
+              }, undefined, false, undefined, this),
+              " View Full OKR Doc"
+            ]
+          }, undefined, true, undefined, this)
+        ]
+      }, undefined, true, undefined, this)
+    ]
+  }, undefined, true, undefined, this);
+}
+function LaunchCard({ item }) {
+  const sc = SUITE_COLORS[item.suite] || { text: "text-gray-700", bg: "bg-gray-50", border: "border-gray-200" };
+  const tierType = TIER_TO_TYPE[item.tier];
+  return jsxDEV_7x81h0kn("a", {
+    href: item.docLink,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    className: `block rounded-lg border-2 ${sc.border} p-3 bg-card hover:shadow-md hover:border-indigo-400 transition-all cursor-pointer group`,
+    children: jsxDEV_7x81h0kn("div", {
+      className: "flex items-start gap-2",
+      children: [
+        jsxDEV_7x81h0kn("div", {
+          className: "flex-1",
+          children: [
+            jsxDEV_7x81h0kn("div", {
+              className: "flex flex-wrap gap-1.5 mb-1.5 items-center",
+              children: [
+                jsxDEV_7x81h0kn("span", {
+                  className: `text-xs font-bold px-1.5 py-0.5 rounded ${sc.bg} ${sc.text}`,
+                  children: item.suite
+                }, undefined, false, undefined, this),
+                tierType && jsxDEV_7x81h0kn("span", {
+                  className: `text-xs font-bold px-2 py-0.5 rounded-full ${tierType.style}`,
+                  children: tierType.label
+                }, undefined, false, undefined, this)
+              ]
+            }, undefined, true, undefined, this),
+            jsxDEV_7x81h0kn("p", {
+              className: "text-sm font-semibold text-foreground group-hover:text-indigo-700 transition-colors",
+              children: item.launch
+            }, undefined, false, undefined, this),
+            jsxDEV_7x81h0kn("p", {
+              className: "text-xs text-muted-foreground mt-0.5",
+              children: [
+                item.product,
+                " · ",
+                item.owner
+              ]
+            }, undefined, true, undefined, this),
+            jsxDEV_7x81h0kn("p", {
+              className: "text-xs text-muted-foreground mt-0.5",
+              children: [
+                "\uD83D\uDCC5 ",
+                item.date
+              ]
+            }, undefined, true, undefined, this),
+            jsxDEV_7x81h0kn("p", {
+              className: "text-xs text-muted-foreground mt-1 italic",
+              children: item.notes
+            }, undefined, false, undefined, this)
+          ]
+        }, undefined, true, undefined, this),
+        jsxDEV_7x81h0kn("span", {
+          dangerouslySetInnerHTML: { __html: `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>` }
+        }, undefined, false, undefined, this)
+      ]
+    }, undefined, true, undefined, this)
+  }, undefined, false, undefined, this);
+}
+function OKRDashboard() {
+  const [view, setView] = useState("suite");
+  const [filterSuite, setFilterSuite] = useState("All Suites");
+  const [filterObjType, setFilterObjType] = useState("All Categories");
+  const [filterAsset, setFilterAsset] = useState("All Asset Types");
+  const [filterPriority, setFilterPriority] = useState("All");
+  const [filterTeam, setFilterTeam] = useState("All Teams");
+  const [filterStakeholder, setFilterStakeholder] = useState("All Stakeholders");
+  const [filterDep, setFilterDep] = useState("All Dependencies");
+  const [filterTeamsInvolved, setFilterTeamsInvolved] = useState("All Teams Involved");
+  const [filterLaunchType, setFilterLaunchType] = useState("All");
+  const [activeInfo, setActiveInfo] = useState(null);
+  const [search, setSearch] = useState("");
+  const [expandedGroups, setExpandedGroups] = useState(new Set(OBJ_TYPES));
+  const toggleGroup = (g) => setExpandedGroups((prev) => {
+    const next = new Set(prev);
+    next.has(g) ? next.delete(g) : next.add(g);
+    return next;
+  });
+  const filtered = useMemo(() => OKR_DATA.filter((item) => {
+    if (filterSuite === "Cross-Product" && !item.crossProduct)
+      return false;
+    if (filterSuite !== "All Suites" && filterSuite !== "Cross-Product" && item.suite !== filterSuite)
+      return false;
+    if (filterObjType !== "All Categories" && item.objType !== filterObjType)
+      return false;
+    if (filterAsset !== "All Asset Types" && item.assetType !== filterAsset)
+      return false;
+    if (filterPriority !== "All" && item.priority !== filterPriority)
+      return false;
+    if (filterTeam !== "All Teams" && !(ASSET_TO_TEAMS[item.assetType] || []).includes(filterTeam))
+      return false;
+    if (filterStakeholder !== "All Stakeholders" && !(ASSET_TO_STAKEHOLDERS[item.assetType] || []).includes(filterStakeholder))
+      return false;
+    if (filterDep !== "All Dependencies" && !(ASSET_TO_DEPS[item.assetType] || []).includes(filterDep))
+      return false;
+    if (filterTeamsInvolved !== "All Teams Involved") {
+      const idx = OKR_DATA.indexOf(item);
+      const actual = OKR_TEAMS_ACTUAL[idx];
+      const allInvolved = actual ? [...actual.stakeholders, ...actual.deps] : [...ASSET_TO_STAKEHOLDERS[item.assetType] || [], ...ASSET_TO_DEPS[item.assetType] || []];
+      if (!allInvolved.includes(filterTeamsInvolved))
+        return false;
+    }
+    if (search && ![item.objective, item.product, item.owner, item.tacticTheme, item.keyTactics].some((f) => f?.toLowerCase().includes(search.toLowerCase())))
+      return false;
+    return true;
+  }), [filterSuite, filterObjType, filterAsset, filterPriority, filterTeam, filterStakeholder, filterDep, filterTeamsInvolved, search]);
+  const filteredLaunches = useMemo(() => LAUNCHES_DATA.filter((item) => {
+    if (filterSuite === "Cross-Product")
+      return true;
+    if (filterSuite !== "All Suites" && item.suite !== filterSuite)
+      return false;
+    if (filterTeamsInvolved !== "All Teams Involved") {
+      const teams = LAUNCH_TEAMS_BY_TIER[item.tier] ?? [];
+      if (!teams.includes(filterTeamsInvolved))
+        return false;
+    }
+    if (filterLaunchType !== "All") {
+      const lt = TIER_TO_TYPE[item.tier];
+      if (!lt || lt.label !== filterLaunchType)
+        return false;
+    }
+    return true;
+  }), [filterSuite, filterTeamsInvolved, filterLaunchType]);
+  return jsxDEV_7x81h0kn("div", {
+    className: "min-h-screen bg-background",
+    children: [
+      jsxDEV_7x81h0kn("div", {
+        className: "bg-indigo-700 text-white px-4 py-4",
+        children: jsxDEV_7x81h0kn("div", {
+          className: "max-w-5xl mx-auto",
+          children: [
+            jsxDEV_7x81h0kn("div", {
+              className: "flex items-center justify-between flex-wrap gap-2 mb-3",
+              children: [
+                jsxDEV_7x81h0kn("div", {
+                  children: [
+                    jsxDEV_7x81h0kn("h1", {
+                      className: "text-xl font-bold",
+                      children: "PMM OKR Dashboard · FY26 Q3"
+                    }, undefined, false, undefined, this),
+                    jsxDEV_7x81h0kn("p", {
+                      className: "text-indigo-200 text-xs mt-0.5",
+                      children: [
+                        OKR_DATA.length,
+                        " objectives across ",
+                        SUITES.length - 1,
+                        " product suites"
+                      ]
+                    }, undefined, true, undefined, this)
+                  ]
+                }, undefined, true, undefined, this),
+                jsxDEV_7x81h0kn("div", {
+                  className: "flex gap-2 flex-wrap",
+                  children: [
+                    jsxDEV_7x81h0kn("a", {
+                      href: "https://datadoghq.atlassian.net/wiki/spaces/PMM/pages/6020694149/PMM+OKRS+FY26",
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                      className: "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white text-indigo-700 border-2 border-white hover:bg-indigo-50 text-xs font-bold shadow transition-colors",
+                      children: [
+                        jsxDEV_7x81h0kn("span", {
+                          dangerouslySetInnerHTML: { __html: `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>` }
+                        }, undefined, false, undefined, this),
+                        " OKR Confluence Hub"
+                      ]
+                    }, undefined, true, undefined, this),
+                    jsxDEV_7x81h0kn("a", {
+                      href: "https://docs.google.com/presentation/d/1GnsPmQ9azKSYLa2NSaIpmQNHXxybjW5ih8-9ZPw8EpE/edit",
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                      className: "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white text-indigo-700 border-2 border-white hover:bg-indigo-50 text-xs font-bold shadow transition-colors",
+                      children: [
+                        jsxDEV_7x81h0kn("span", {
+                          dangerouslySetInnerHTML: { __html: `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>` }
+                        }, undefined, false, undefined, this),
+                        " Mktg Strategy Deck"
+                      ]
+                    }, undefined, true, undefined, this)
+                  ]
+                }, undefined, true, undefined, this)
+              ]
+            }, undefined, true, undefined, this),
+            jsxDEV_7x81h0kn("div", {
+              className: "flex gap-2 flex-wrap mt-1",
+              children: [["suite", "By Product Suite"], ["category", "By Objectives"], ["launches", "Launches (Feature, New Product)"], ["spreadsheet", "Spreadsheet"]].map(([v, label]) => jsxDEV_7x81h0kn("button", {
+                onClick: () => setView(v),
+                className: `px-4 py-1.5 rounded-full text-xs font-bold border-2 transition-all ${view === v ? "bg-white text-indigo-700 border-white shadow" : "bg-transparent text-white border-indigo-400 hover:border-white hover:bg-indigo-600"}`,
+                children: label
+              }, v, false, undefined, this))
+            }, undefined, false, undefined, this)
+          ]
+        }, undefined, true, undefined, this)
+      }, undefined, false, undefined, this),
+      jsxDEV_7x81h0kn("div", {
+        className: "max-w-5xl mx-auto px-4 py-4 space-y-4",
+        children: [
+          view !== "spreadsheet" && jsxDEV_7x81h0kn("div", {
+            className: "rounded-lg border bg-white shadow-sm",
+            children: jsxDEV_7x81h0kn("div", {
+              className: "pt-3 pb-3",
+              children: [
+                jsxDEV_7x81h0kn("div", {
+                  className: "flex items-center gap-1 mb-2",
+                  children: [
+                    jsxDEV_7x81h0kn("span", {
+                      dangerouslySetInnerHTML: { __html: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>` }
+                    }, undefined, false, undefined, this),
+                    jsxDEV_7x81h0kn("span", {
+                      className: "text-xs font-semibold text-muted-foreground uppercase tracking-wide",
+                      children: "Filter by"
+                    }, undefined, false, undefined, this),
+                    jsxDEV_7x81h0kn("span", {
+                      className: "ml-auto text-xs text-muted-foreground",
+                      children: view === "launches" ? `${filteredLaunches.length} launches` : `${filtered.length} objectives`
+                    }, undefined, false, undefined, this)
+                  ]
+                }, undefined, true, undefined, this),
+                jsxDEV_7x81h0kn("div", {
+                  style: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: "0.5rem" },
+                  className: "mb-2",
+                  children: [
+                    jsxDEV_7x81h0kn("div", {
+                      className: "flex flex-col gap-0.5",
+                      children: [
+                        jsxDEV_7x81h0kn("span", {
+                          className: "text-xs font-semibold text-indigo-600 uppercase tracking-wide px-0.5",
+                          children: "Suite"
+                        }, undefined, false, undefined, this),
+                        jsxDEV_7x81h0kn("select", {
+                          value: filterSuite,
+                          onChange: (e) => setFilterSuite(e.target.value),
+                          className: "text-xs border-2 border-indigo-300 rounded-lg px-2 py-1.5 bg-background focus:outline-none focus:border-indigo-500 focus:ring-0 w-full",
+                          children: SUITES.map((s) => jsxDEV_7x81h0kn("option", {
+                            value: s,
+                            children: s
+                          }, s, false, undefined, this))
+                        }, undefined, false, undefined, this)
+                      ]
+                    }, undefined, true, undefined, this),
+                    jsxDEV_7x81h0kn("div", {
+                      className: "flex flex-col gap-0.5",
+                      children: [
+                        jsxDEV_7x81h0kn("span", {
+                          className: "text-xs font-semibold text-gray-500 uppercase tracking-wide px-0.5",
+                          children: "Priority"
+                        }, undefined, false, undefined, this),
+                        jsxDEV_7x81h0kn("select", {
+                          value: filterPriority,
+                          onChange: (e) => setFilterPriority(e.target.value),
+                          className: "text-xs border-2 border-gray-200 rounded-lg px-2 py-1.5 bg-background focus:outline-none focus:border-gray-400 focus:ring-0 w-full",
+                          children: [
+                            jsxDEV_7x81h0kn("option", {
+                              value: "All",
+                              children: "All Priorities"
+                            }, undefined, false, undefined, this),
+                            jsxDEV_7x81h0kn("option", {
+                              value: "P0",
+                              children: "P0 — Critical"
+                            }, undefined, false, undefined, this),
+                            jsxDEV_7x81h0kn("option", {
+                              value: "P1",
+                              children: "P1 — Important"
+                            }, undefined, false, undefined, this)
+                          ]
+                        }, undefined, true, undefined, this)
+                      ]
+                    }, undefined, true, undefined, this),
+                    view !== "launches" && jsxDEV_7x81h0kn(Fragment_8vg9x3sq, {
+                      children: [
+                        jsxDEV_7x81h0kn("div", {
+                          className: "flex flex-col gap-0.5",
+                          children: [
+                            jsxDEV_7x81h0kn("span", {
+                              className: "text-xs font-semibold text-gray-500 uppercase tracking-wide px-0.5",
+                              children: "Objective Type"
+                            }, undefined, false, undefined, this),
+                            jsxDEV_7x81h0kn("select", {
+                              value: filterObjType,
+                              onChange: (e) => setFilterObjType(e.target.value),
+                              className: "text-xs border-2 border-gray-200 rounded-lg px-2 py-1.5 bg-background focus:outline-none focus:border-gray-400 focus:ring-0 w-full",
+                              children: OBJ_TYPES.map((t) => jsxDEV_7x81h0kn("option", {
+                                value: t,
+                                children: t === "All Categories" ? "All Objectives" : t
+                              }, t, false, undefined, this))
+                            }, undefined, false, undefined, this)
+                          ]
+                        }, undefined, true, undefined, this),
+                        jsxDEV_7x81h0kn("div", {
+                          className: "flex flex-col gap-0.5",
+                          children: [
+                            jsxDEV_7x81h0kn("span", {
+                              className: "text-xs font-semibold text-gray-500 uppercase tracking-wide px-0.5",
+                              children: "Tactic / Asset"
+                            }, undefined, false, undefined, this),
+                            jsxDEV_7x81h0kn("select", {
+                              value: filterAsset,
+                              onChange: (e) => setFilterAsset(e.target.value),
+                              className: "text-xs border-2 border-gray-200 rounded-lg px-2 py-1.5 bg-background focus:outline-none focus:border-gray-400 focus:ring-0 w-full",
+                              children: ASSET_TYPES.map((t) => jsxDEV_7x81h0kn("option", {
+                                value: t,
+                                children: t === "All Asset Types" ? "All Tactics" : t
+                              }, t, false, undefined, this))
+                            }, undefined, false, undefined, this)
+                          ]
+                        }, undefined, true, undefined, this)
+                      ]
+                    }, undefined, true, undefined, this),
+                    view === "launches" && jsxDEV_7x81h0kn("div", {
+                      className: "flex flex-col gap-0.5",
+                      children: [
+                        jsxDEV_7x81h0kn("span", {
+                          className: "text-xs font-semibold text-gray-500 uppercase tracking-wide px-0.5",
+                          children: "Launch Type"
+                        }, undefined, false, undefined, this),
+                        jsxDEV_7x81h0kn("select", {
+                          value: filterLaunchType,
+                          onChange: (e) => setFilterLaunchType(e.target.value),
+                          className: "text-xs border-2 border-gray-200 rounded-lg px-2 py-1.5 bg-background focus:outline-none focus:border-gray-400 focus:ring-0 w-full",
+                          children: [
+                            jsxDEV_7x81h0kn("option", {
+                              value: "All",
+                              children: "All Types"
+                            }, undefined, false, undefined, this),
+                            jsxDEV_7x81h0kn("option", {
+                              value: "New Product",
+                              children: "\uD83D\uDE80 New Product"
+                            }, undefined, false, undefined, this),
+                            jsxDEV_7x81h0kn("option", {
+                              value: "New Feature",
+                              children: "✨ New Feature"
+                            }, undefined, false, undefined, this),
+                            jsxDEV_7x81h0kn("option", {
+                              value: "New Integration",
+                              children: "\uD83D\uDD17 New Integration"
+                            }, undefined, false, undefined, this)
+                          ]
+                        }, undefined, true, undefined, this)
+                      ]
+                    }, undefined, true, undefined, this)
+                  ]
+                }, undefined, true, undefined, this),
+                jsxDEV_7x81h0kn("div", {
+                  style: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: "0.5rem" },
+                  children: jsxDEV_7x81h0kn("div", {
+                    className: "flex flex-col gap-0.5",
+                    children: [
+                      jsxDEV_7x81h0kn("div", {
+                        className: "flex items-center gap-1 px-0.5",
+                        children: [
+                          jsxDEV_7x81h0kn("span", {
+                            className: "text-xs font-semibold text-sky-600 uppercase tracking-wide",
+                            children: "Teams Involved"
+                          }, undefined, false, undefined, this),
+                          jsxDEV_7x81h0kn("button", {
+                            onClick: () => setActiveInfo(activeInfo === "stakeholder" ? null : "stakeholder"),
+                            className: "text-sky-400 hover:text-sky-600 transition-colors",
+                            children: jsxDEV_7x81h0kn("span", {
+                              dangerouslySetInnerHTML: { __html: `<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>` }
+                            }, undefined, false, undefined, this)
+                          }, undefined, false, undefined, this)
+                        ]
+                      }, undefined, true, undefined, this),
+                      jsxDEV_7x81h0kn("select", {
+                        value: filterTeamsInvolved,
+                        onChange: (e) => setFilterTeamsInvolved(e.target.value),
+                        className: "text-xs border-2 border-sky-300 rounded-lg px-2 py-1.5 bg-background focus:outline-none focus:border-sky-500 focus:ring-0 w-full",
+                        children: ALL_TEAMS_INVOLVED.map((t) => jsxDEV_7x81h0kn("option", {
+                          value: t,
+                          children: t
+                        }, t, false, undefined, this))
+                      }, undefined, false, undefined, this)
+                    ]
+                  }, undefined, true, undefined, this)
+                }, undefined, false, undefined, this),
+                activeInfo === "stakeholder" && jsxDEV_7x81h0kn("div", {
+                  className: "mt-3 rounded-lg bg-sky-50 border border-sky-200 px-4 py-3 relative",
+                  children: [
+                    jsxDEV_7x81h0kn("button", {
+                      onClick: () => setActiveInfo(null),
+                      className: "absolute top-2 right-2 text-sky-400 hover:text-sky-600",
+                      children: jsxDEV_7x81h0kn("span", {
+                        dangerouslySetInnerHTML: { __html: `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>` }
+                      }, undefined, false, undefined, this)
+                    }, undefined, false, undefined, this),
+                    jsxDEV_7x81h0kn("p", {
+                      className: "text-xs font-bold text-sky-700 mb-1",
+                      children: '\uD83D\uDC65 What does "Teams Involved" mean?'
+                    }, undefined, false, undefined, this),
+                    jsxDEV_7x81h0kn("p", {
+                      className: "text-xs text-sky-800",
+                      children: [
+                        "This filter shows you every OKR that ",
+                        jsxDEV_7x81h0kn("span", {
+                          className: "font-semibold",
+                          children: "touches a specific team"
+                        }, undefined, false, undefined, this),
+                        " — whether they need to be looped in, are doing work to enable it, or both."
+                      ]
+                    }, undefined, true, undefined, this),
+                    jsxDEV_7x81h0kn("p", {
+                      className: "text-xs text-sky-700 mt-1.5 font-semibold",
+                      children: "How to use it:"
+                    }, undefined, false, undefined, this),
+                    jsxDEV_7x81h0kn("ul", {
+                      className: "text-xs text-sky-800 mt-1 space-y-0.5 list-disc list-inside",
+                      children: [
+                        jsxDEV_7x81h0kn("li", {
+                          children: [
+                            "Select ",
+                            jsxDEV_7x81h0kn("span", {
+                              className: "font-medium",
+                              children: "Brand"
+                            }, undefined, false, undefined, this),
+                            " → see every OKR that needs Brand's eyes or hands"
+                          ]
+                        }, undefined, true, undefined, this),
+                        jsxDEV_7x81h0kn("li", {
+                          children: [
+                            "Select ",
+                            jsxDEV_7x81h0kn("span", {
+                              className: "font-medium",
+                              children: "Demand Gen"
+                            }, undefined, false, undefined, this),
+                            " → see every campaign and content OKR DG needs to run"
+                          ]
+                        }, undefined, true, undefined, this),
+                        jsxDEV_7x81h0kn("li", {
+                          children: [
+                            "Select ",
+                            jsxDEV_7x81h0kn("span", {
+                              className: "font-medium",
+                              children: "Event Marketing"
+                            }, undefined, false, undefined, this),
+                            " → see which launches and campaigns need event support"
+                          ]
+                        }, undefined, true, undefined, this),
+                        jsxDEV_7x81h0kn("li", {
+                          children: [
+                            "Select ",
+                            jsxDEV_7x81h0kn("span", {
+                              className: "font-medium",
+                              children: "Customer Marketing"
+                            }, undefined, false, undefined, this),
+                            " → see where case studies and proof points are needed"
+                          ]
+                        }, undefined, true, undefined, this)
+                      ]
+                    }, undefined, true, undefined, this),
+                    jsxDEV_7x81h0kn("p", {
+                      className: "text-xs text-sky-600 mt-1.5 italic",
+                      children: "Selecting a team also unlocks a Q3 briefing below — a digest of exactly what that team needs to do this quarter."
+                    }, undefined, false, undefined, this)
+                  ]
+                }, undefined, true, undefined, this),
+                activeInfo === "dependency" && jsxDEV_7x81h0kn("div", {
+                  className: "mt-3 rounded-lg bg-amber-50 border border-amber-200 px-4 py-3 relative",
+                  children: [
+                    jsxDEV_7x81h0kn("button", {
+                      onClick: () => setActiveInfo(null),
+                      className: "absolute top-2 right-2 text-amber-400 hover:text-amber-600",
+                      children: jsxDEV_7x81h0kn("span", {
+                        dangerouslySetInnerHTML: { __html: `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>` }
+                      }, undefined, false, undefined, this)
+                    }, undefined, false, undefined, this),
+                    jsxDEV_7x81h0kn("p", {
+                      className: "text-xs font-bold text-amber-700 mb-1",
+                      children: "\uD83D\uDD17 What is a Dependency?"
+                    }, undefined, false, undefined, this),
+                    jsxDEV_7x81h0kn("p", {
+                      className: "text-xs text-amber-800",
+                      children: [
+                        "Dependencies are teams whose work ",
+                        jsxDEV_7x81h0kn("span", {
+                          className: "font-semibold",
+                          children: "directly enables the OKR"
+                        }, undefined, false, undefined, this),
+                        " — if they're delayed or blocked, the OKR is at risk."
+                      ]
+                    }, undefined, true, undefined, this),
+                    jsxDEV_7x81h0kn("p", {
+                      className: "text-xs text-amber-700 mt-1.5 font-semibold",
+                      children: "How to use this filter:"
+                    }, undefined, false, undefined, this),
+                    jsxDEV_7x81h0kn("ul", {
+                      className: "text-xs text-amber-800 mt-1 space-y-0.5 list-disc list-inside",
+                      children: [
+                        jsxDEV_7x81h0kn("li", {
+                          children: [
+                            "Select ",
+                            jsxDEV_7x81h0kn("span", {
+                              className: "font-medium",
+                              children: "Demand Gen"
+                            }, undefined, false, undefined, this),
+                            " → see every OKR that needs DG to execute"
+                          ]
+                        }, undefined, true, undefined, this),
+                        jsxDEV_7x81h0kn("li", {
+                          children: [
+                            "Select ",
+                            jsxDEV_7x81h0kn("span", {
+                              className: "font-medium",
+                              children: "PM"
+                            }, undefined, false, undefined, this),
+                            " → see which OKRs are blocked if PM doesn't deliver"
+                          ]
+                        }, undefined, true, undefined, this),
+                        jsxDEV_7x81h0kn("li", {
+                          children: [
+                            "Select ",
+                            jsxDEV_7x81h0kn("span", {
+                              className: "font-medium",
+                              children: "Brand"
+                            }, undefined, false, undefined, this),
+                            " → see which launches or campaigns can't ship without Brand"
+                          ]
+                        }, undefined, true, undefined, this)
+                      ]
+                    }, undefined, true, undefined, this),
+                    jsxDEV_7x81h0kn("p", {
+                      className: "text-xs text-amber-600 mt-1.5 italic",
+                      children: "Use this at the start of a quarter to surface risks early and make sure the right teams are aligned before work begins."
+                    }, undefined, false, undefined, this)
+                  ]
+                }, undefined, true, undefined, this),
+                filterTeamsInvolved !== "All Teams Involved" && STAKEHOLDER_DIGEST[filterTeamsInvolved] && jsxDEV_7x81h0kn("div", {
+                  className: "mt-3 rounded-lg bg-indigo-50 border border-indigo-200 px-4 py-3",
+                  children: [
+                    jsxDEV_7x81h0kn("div", {
+                      className: "flex items-center gap-2 mb-2",
+                      children: [
+                        jsxDEV_7x81h0kn("span", {
+                          className: "text-base",
+                          children: STAKEHOLDER_DIGEST[filterTeamsInvolved].emoji
+                        }, undefined, false, undefined, this),
+                        jsxDEV_7x81h0kn("span", {
+                          className: "text-xs font-bold text-indigo-700",
+                          children: [
+                            filterTeamsInvolved,
+                            " — Q3 Briefing"
+                          ]
+                        }, undefined, true, undefined, this),
+                        jsxDEV_7x81h0kn("span", {
+                          className: "ml-auto text-xs text-indigo-500",
+                          children: [
+                            filtered.length,
+                            " OKRs involve you"
+                          ]
+                        }, undefined, true, undefined, this)
+                      ]
+                    }, undefined, true, undefined, this),
+                    jsxDEV_7x81h0kn("p", {
+                      className: "text-xs text-indigo-600 italic mb-2",
+                      children: STAKEHOLDER_DIGEST[filterTeamsInvolved].role
+                    }, undefined, false, undefined, this),
+                    jsxDEV_7x81h0kn("p", {
+                      className: "text-xs text-indigo-900 mb-3",
+                      children: STAKEHOLDER_DIGEST[filterTeamsInvolved].tldr
+                    }, undefined, false, undefined, this),
+                    jsxDEV_7x81h0kn("div", {
+                      className: "mb-2",
+                      children: [
+                        jsxDEV_7x81h0kn("p", {
+                          className: "text-xs font-bold text-indigo-700 mb-1",
+                          children: "✅ Your Q3 Action List"
+                        }, undefined, false, undefined, this),
+                        jsxDEV_7x81h0kn("ul", {
+                          className: "space-y-1",
+                          children: STAKEHOLDER_DIGEST[filterTeamsInvolved].actions.map((a, i) => jsxDEV_7x81h0kn("li", {
+                            className: "text-xs text-indigo-800 flex gap-1.5 items-start",
+                            children: [
+                              jsxDEV_7x81h0kn("span", {
+                                className: "shrink-0 font-bold text-indigo-400",
+                                children: [
+                                  i + 1,
+                                  "."
+                                ]
+                              }, undefined, true, undefined, this),
+                              a
+                            ]
+                          }, i, true, undefined, this))
+                        }, undefined, false, undefined, this)
+                      ]
+                    }, undefined, true, undefined, this),
+                    jsxDEV_7x81h0kn("div", {
+                      className: "rounded bg-amber-50 border border-amber-200 px-3 py-2 mt-2",
+                      children: [
+                        jsxDEV_7x81h0kn("p", {
+                          className: "text-xs font-bold text-amber-700",
+                          children: "⚠️ Watch Out"
+                        }, undefined, false, undefined, this),
+                        jsxDEV_7x81h0kn("p", {
+                          className: "text-xs text-amber-800 mt-0.5",
+                          children: STAKEHOLDER_DIGEST[filterTeamsInvolved].watchOut
+                        }, undefined, false, undefined, this)
+                      ]
+                    }, undefined, true, undefined, this)
+                  ]
+                }, undefined, true, undefined, this)
+              ]
+            }, undefined, true, undefined, this)
+          }, undefined, false, undefined, this),
+          (view === "category" || view === "launches") && jsxDEV_7x81h0kn("div", {
+            className: `rounded-lg border px-4 py-3 flex gap-3 items-start text-xs ${view === "category" ? "bg-violet-50 border-violet-200" : "bg-pink-50 border-pink-200"}`,
+            children: [
+              jsxDEV_7x81h0kn("div", {
+                className: "shrink-0 mt-0.5",
+                children: view === "category" ? jsxDEV_7x81h0kn("span", {
+                  dangerouslySetInnerHTML: { __html: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>` }
+                }, undefined, false, undefined, this) : jsxDEV_7x81h0kn("span", {
+                  dangerouslySetInnerHTML: { __html: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>` }
+                }, undefined, false, undefined, this)
+              }, undefined, false, undefined, this),
+              jsxDEV_7x81h0kn("div", {
+                children: view === "category" ? jsxDEV_7x81h0kn(Fragment_8vg9x3sq, {
+                  children: [
+                    jsxDEV_7x81h0kn("span", {
+                      className: "font-bold text-violet-700",
+                      children: "By Objectives"
+                    }, undefined, false, undefined, this),
+                    jsxDEV_7x81h0kn("span", {
+                      className: "text-violet-700",
+                      children: [
+                        " — Each card = one PMM's OKR objective. A single objective can cover ",
+                        jsxDEV_7x81h0kn("span", {
+                          className: "font-semibold",
+                          children: "multiple product launches"
+                        }, undefined, false, undefined, this),
+                        ` (e.g. Corey's Logs OKR covers 6 GAs in one objective). 13 objectives tagged as "Launching a Product/Feature" doesn't mean 13 launches — it means 13 PMMs/teams have a launch-focused goal.`
+                      ]
+                    }, undefined, true, undefined, this)
+                  ]
+                }, undefined, true, undefined, this) : jsxDEV_7x81h0kn(Fragment_8vg9x3sq, {
+                  children: [
+                    jsxDEV_7x81h0kn("span", {
+                      className: "font-bold text-pink-700",
+                      children: "Launches"
+                    }, undefined, false, undefined, this),
+                    jsxDEV_7x81h0kn("span", {
+                      className: "text-pink-700",
+                      children: [
+                        " — Each card = one individual product or feature GA happening in Q3. There are ",
+                        jsxDEV_7x81h0kn("span", {
+                          className: "font-semibold",
+                          children: "15 separate GAs"
+                        }, undefined, false, undefined, this),
+                        " across all suites. Some are bundled inside a single OKR objective (e.g. Logs has 6 GAs, RUM has 2), which is why this count is higher than the 13 launch objectives."
+                      ]
+                    }, undefined, true, undefined, this)
+                  ]
+                }, undefined, true, undefined, this)
+              }, undefined, false, undefined, this)
+            ]
+          }, undefined, true, undefined, this),
+          view === "category" && jsxDEV_7x81h0kn("div", {
+            className: "space-y-3",
+            children: OBJ_TYPES.filter((t) => t !== "All Categories").map((type) => ({ type, items: filtered.filter((i) => i.objType === type) })).filter(({ items }) => items.length > 0).sort((a, b) => b.items.length - a.items.length).map(({ type, items }) => {
+              const isOpen = expandedGroups.has(type);
+              const typeColors = {
+                "Driving Pipeline/DG Impact": "text-violet-700 bg-violet-50 border-violet-200",
+                "Educating Prospects/Content Impact": "text-emerald-700 bg-emerald-50 border-emerald-200",
+                "Enabling Sales/Increasing Win Rates": "text-indigo-700 bg-indigo-50 border-indigo-200",
+                "Improving Competitive Performance": "text-rose-700 bg-rose-50 border-rose-200",
+                "Improving Messaging/Positioning": "text-sky-700 bg-sky-50 border-sky-200",
+                "Increasing Adoption/Expansion": "text-amber-700 bg-amber-50 border-amber-200",
+                "Launching a Product/Feature": "text-pink-700 bg-pink-50 border-pink-200"
+              };
+              const cc = typeColors[type] || "text-gray-700 bg-gray-50 border-gray-200";
+              return jsxDEV_7x81h0kn("div", {
+                className: `rounded-lg border overflow-hidden ${cc.split(" ")[2]}`,
+                children: [
+                  jsxDEV_7x81h0kn("button", {
+                    onClick: () => toggleGroup(type),
+                    className: `w-full flex items-center justify-between px-4 py-2.5 ${cc.split(" ").slice(1).join(" ")} hover:opacity-90 transition-opacity`,
+                    children: [
+                      jsxDEV_7x81h0kn("div", {
+                        className: "flex items-center gap-2",
+                        children: [
+                          isOpen ? jsxDEV_7x81h0kn("span", {
+                            dangerouslySetInnerHTML: { __html: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>` }
+                          }, undefined, false, undefined, this) : jsxDEV_7x81h0kn("span", {
+                            dangerouslySetInnerHTML: { __html: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>` }
+                          }, undefined, false, undefined, this),
+                          jsxDEV_7x81h0kn("span", {
+                            className: `font-semibold text-sm ${cc.split(" ")[0]}`,
+                            children: type
+                          }, undefined, false, undefined, this)
+                        ]
+                      }, undefined, true, undefined, this),
+                      jsxDEV_7x81h0kn("span", {
+                        className: `text-xs font-medium ${cc.split(" ")[0]} opacity-70`,
+                        children: [
+                          items.length,
+                          " objective",
+                          items.length !== 1 ? "s" : ""
+                        ]
+                      }, undefined, true, undefined, this)
+                    ]
+                  }, undefined, true, undefined, this),
+                  isOpen && jsxDEV_7x81h0kn("div", {
+                    className: "p-3 space-y-2 bg-card",
+                    children: items.map((item, i) => jsxDEV_7x81h0kn(OKRCard, {
+                      item,
+                      showSuite: true
+                    }, i, false, undefined, this))
+                  }, undefined, false, undefined, this)
+                ]
+              }, type, true, undefined, this);
+            })
+          }, undefined, false, undefined, this),
+          view === "suite" && jsxDEV_7x81h0kn("div", {
+            className: "space-y-3",
+            children: SUITES.filter((s) => s !== "All Suites").map((suite) => {
+              const items = filtered.filter((i) => i.suite === suite);
+              if (items.length === 0)
+                return null;
+              const sc = SUITE_COLORS[suite] || { text: "text-gray-700", bg: "bg-gray-50", border: "border-gray-200" };
+              const isOpen = expandedGroups.has(suite);
+              return jsxDEV_7x81h0kn("div", {
+                className: `rounded-lg border ${sc.border} overflow-hidden`,
+                children: [
+                  jsxDEV_7x81h0kn("button", {
+                    onClick: () => toggleGroup(suite),
+                    className: `w-full flex items-center justify-between px-4 py-2.5 ${sc.bg} hover:opacity-90 transition-opacity`,
+                    children: [
+                      jsxDEV_7x81h0kn("div", {
+                        className: "flex items-center gap-2",
+                        children: [
+                          isOpen ? jsxDEV_7x81h0kn("span", {
+                            dangerouslySetInnerHTML: { __html: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>` }
+                          }, undefined, false, undefined, this) : jsxDEV_7x81h0kn("span", {
+                            dangerouslySetInnerHTML: { __html: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>` }
+                          }, undefined, false, undefined, this),
+                          jsxDEV_7x81h0kn("span", {
+                            className: `font-semibold text-sm ${sc.text}`,
+                            children: suite
+                          }, undefined, false, undefined, this)
+                        ]
+                      }, undefined, true, undefined, this),
+                      jsxDEV_7x81h0kn("span", {
+                        className: `text-xs font-medium ${sc.text} opacity-70`,
+                        children: [
+                          items.length,
+                          " objectives"
+                        ]
+                      }, undefined, true, undefined, this)
+                    ]
+                  }, undefined, true, undefined, this),
+                  isOpen && jsxDEV_7x81h0kn("div", {
+                    className: "p-3 space-y-2 bg-card",
+                    children: items.map((item, i) => jsxDEV_7x81h0kn(OKRCard, {
+                      item
+                    }, i, false, undefined, this))
+                  }, undefined, false, undefined, this)
+                ]
+              }, suite, true, undefined, this);
+            })
+          }, undefined, false, undefined, this),
+          view === "launches" && jsxDEV_7x81h0kn("div", {
+            className: "space-y-3",
+            children: [
+              jsxDEV_7x81h0kn("div", {
+                className: "flex items-center gap-2 mb-1",
+                children: [
+                  jsxDEV_7x81h0kn("span", {
+                    dangerouslySetInnerHTML: { __html: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>` }
+                  }, undefined, false, undefined, this),
+                  jsxDEV_7x81h0kn("h2", {
+                    className: "text-sm font-semibold text-foreground",
+                    children: "Q3 Product Launches"
+                  }, undefined, false, undefined, this)
+                ]
+              }, undefined, true, undefined, this),
+              jsxDEV_7x81h0kn("div", {
+                style: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "0.5rem" },
+                children: filteredLaunches.map((item, i) => jsxDEV_7x81h0kn(LaunchCard, {
+                  item
+                }, i, false, undefined, this))
+              }, undefined, false, undefined, this)
+            ]
+          }, undefined, true, undefined, this),
+          view === "spreadsheet" && jsxDEV_7x81h0kn("div", {
+            className: "overflow-hidden",
+            children: [
+              jsxDEV_7x81h0kn("div", {
+                className: "pb-2 pt-4",
+                children: jsxDEV_7x81h0kn("h3", {
+                  className: "text-sm font-semibold text-muted-foreground uppercase tracking-wide",
+                  children: "Full OKR Spreadsheet · Q3"
+                }, undefined, false, undefined, this)
+              }, undefined, false, undefined, this),
+              jsxDEV_7x81h0kn("div", {
+                className: "p-0 pb-4",
+                children: jsxDEV_7x81h0kn("div", {
+                  className: "overflow-x-auto",
+                  children: jsxDEV_7x81h0kn("table", {
+                    className: "w-full text-xs border-collapse",
+                    children: [
+                      jsxDEV_7x81h0kn("thead", {
+                        children: jsxDEV_7x81h0kn("tr", {
+                          className: "bg-indigo-700 text-white",
+                          children: [
+                            jsxDEV_7x81h0kn("th", {
+                              className: "text-left px-3 py-2 font-semibold border border-indigo-600 sticky left-0 bg-indigo-700 z-10",
+                              style: { minWidth: 80 },
+                              children: "Suite"
+                            }, undefined, false, undefined, this),
+                            jsxDEV_7x81h0kn("th", {
+                              className: "text-left px-3 py-2 font-semibold border border-indigo-600",
+                              style: { minWidth: 130 },
+                              children: "Product"
+                            }, undefined, false, undefined, this),
+                            jsxDEV_7x81h0kn("th", {
+                              className: "text-left px-3 py-2 font-semibold border border-indigo-600",
+                              style: { minWidth: 90 },
+                              children: "Category"
+                            }, undefined, false, undefined, this),
+                            jsxDEV_7x81h0kn("th", {
+                              className: "text-left px-3 py-2 font-semibold border border-indigo-600",
+                              style: { minWidth: 90 },
+                              children: "Asset Type"
+                            }, undefined, false, undefined, this),
+                            jsxDEV_7x81h0kn("th", {
+                              className: "text-left px-3 py-2 font-semibold border border-indigo-600",
+                              style: { minWidth: 80 },
+                              children: "Owner"
+                            }, undefined, false, undefined, this),
+                            jsxDEV_7x81h0kn("th", {
+                              className: "text-center px-2 py-2 font-semibold border border-indigo-600",
+                              style: { minWidth: 45 },
+                              children: "Pri."
+                            }, undefined, false, undefined, this),
+                            jsxDEV_7x81h0kn("th", {
+                              className: "text-left px-3 py-2 font-semibold border border-indigo-600",
+                              style: { minWidth: 260 },
+                              children: "Full Objective"
+                            }, undefined, false, undefined, this),
+                            jsxDEV_7x81h0kn("th", {
+                              className: "text-left px-3 py-2 font-semibold border border-indigo-600",
+                              style: { minWidth: 220 },
+                              children: "Key Tactics"
+                            }, undefined, false, undefined, this)
+                          ]
+                        }, undefined, true, undefined, this)
+                      }, undefined, false, undefined, this),
+                      jsxDEV_7x81h0kn("tbody", {
+                        children: OKR_DATA.map((item, i) => {
+                          const sc = SUITE_COLORS[item.suite] || { text: "text-gray-700", bg: "bg-gray-50", border: "border-gray-200" };
+                          const ac = ASSET_COLORS[item.assetType] || "bg-gray-100 text-gray-600";
+                          const rowBg = i % 2 === 0 ? "bg-white" : "bg-slate-50";
+                          return jsxDEV_7x81h0kn("tr", {
+                            className: `${rowBg} hover:bg-indigo-50 transition-colors`,
+                            children: [
+                              jsxDEV_7x81h0kn("td", {
+                                className: `px-2 py-1.5 border border-gray-200 sticky left-0 z-10 ${rowBg}`,
+                                children: jsxDEV_7x81h0kn("span", {
+                                  className: `font-semibold ${sc.text}`,
+                                  children: item.suite
+                                }, undefined, false, undefined, this)
+                              }, undefined, false, undefined, this),
+                              jsxDEV_7x81h0kn("td", {
+                                className: "px-2 py-1.5 border border-gray-200 text-foreground",
+                                children: item.product
+                              }, undefined, false, undefined, this),
+                              jsxDEV_7x81h0kn("td", {
+                                className: "px-2 py-1.5 border border-gray-200 text-muted-foreground",
+                                children: item.objType.replace("/", "/ ")
+                              }, undefined, false, undefined, this),
+                              jsxDEV_7x81h0kn("td", {
+                                className: "px-2 py-1.5 border border-gray-200",
+                                children: jsxDEV_7x81h0kn("span", {
+                                  className: `px-1.5 py-0.5 rounded text-xs font-medium ${ac}`,
+                                  children: item.tacticTheme
+                                }, undefined, false, undefined, this)
+                              }, undefined, false, undefined, this),
+                              jsxDEV_7x81h0kn("td", {
+                                className: "px-2 py-1.5 border border-gray-200 text-muted-foreground",
+                                children: item.owner
+                              }, undefined, false, undefined, this),
+                              jsxDEV_7x81h0kn("td", {
+                                className: "px-2 py-1.5 border border-gray-200 text-center",
+                                children: jsxDEV_7x81h0kn("span", {
+                                  className: `font-bold text-xs ${item.priority === "P0" ? "text-red-600" : "text-gray-400"}`,
+                                  children: item.priority
+                                }, undefined, false, undefined, this)
+                              }, undefined, false, undefined, this),
+                              jsxDEV_7x81h0kn("td", {
+                                className: "px-2 py-1.5 border border-gray-200 text-foreground",
+                                children: item.objective
+                              }, undefined, false, undefined, this),
+                              jsxDEV_7x81h0kn("td", {
+                                className: "px-2 py-1.5 border border-gray-200 text-muted-foreground",
+                                children: item.keyTactics
+                              }, undefined, false, undefined, this)
+                            ]
+                          }, i, true, undefined, this);
+                        })
+                      }, undefined, false, undefined, this)
+                    ]
+                  }, undefined, true, undefined, this)
+                }, undefined, false, undefined, this)
+              }, undefined, false, undefined, this)
+            ]
+          }, undefined, true, undefined, this)
+        ]
+      }, undefined, true, undefined, this)
+    ]
+  }, undefined, true, undefined, this);
+}
+
+const root=ReactDOM.createRoot(document.getElementById('root'));
+root.render(React.createElement(Dashboard));
+</script>
+</body>
+</html>
